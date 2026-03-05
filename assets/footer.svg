@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 120" width="900" height="120">
+  <defs>
+    <filter id="glow4">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="fadeOut" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    @keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes typeLoop {
+      0%, 100% { opacity: 0; }
+      5% { opacity: 1; }
+      45% { opacity: 1; }
+      50% { opacity: 0; }
+      55% { opacity: 1; }
+      95% { opacity: 1; }
+    }
+    .blink { animation: cursorBlink 1s step-end infinite; }
+  </style>
+
+  <rect width="900" height="120" fill="url(#fadeOut)"/>
+
+  <!-- Terminal prompt -->
+  <text x="450" y="40" font-family="'Courier New', monospace" font-size="14" fill="#f5a623" text-anchor="middle" filter="url(#glow4)">
+    この戦いに、言葉だけで十分だ。
+  </text>
+  <text x="450" y="60" font-family="'Courier New', monospace" font-size="10" fill="#4a6a8a" text-anchor="middle">
+    这场战斗，只需一句话就够了。
+  </text>
+
+  <!-- Bottom terminal line -->
+  <text x="50" y="95" font-family="'Courier New', monospace" font-size="11" fill="#1a3a5a">
+    root@rhodes-island:~$
+  </text>
+  <text x="230" y="95" font-family="'Courier New', monospace" font-size="11" fill="#4a6a8a">
+    Connection to PRTS established. Awaiting orders._
+  </text>
+  <rect x="530" y="83" width="8" height="14" fill="#f5a623" class="blink"/>
+</svg>

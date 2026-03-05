@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="900" height="280">
+  <defs>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#111a28" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes orbit { 0% { stroke-dashoffset: 20; } 100% { stroke-dashoffset: 0; } }
+    @keyframes nodePulse { 0%, 100% { r: 18; opacity: 0.8; } 50% { r: 22; opacity: 1; } }
+    @keyframes dataPulse { 0% { opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes ringRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes packet1 {
+      0% { cx: 300; cy: 140; opacity: 0; }
+      10% { opacity: 1; }
+      50% { cx: 450; cy: 140; }
+      90% { opacity: 1; }
+      100% { cx: 600; cy: 140; opacity: 0; }
+    }
+    @keyframes packet2 {
+      0% { cx: 450; cy: 140; opacity: 0; }
+      10% { opacity: 1; }
+      50% { cx: 300; cy: 210; }
+      90% { opacity: 1; }
+      100% { cx: 300; cy: 210; opacity: 0; }
+    }
+    @keyframes packet3 {
+      0% { cx: 450; cy: 140; opacity: 0; }
+      10% { opacity: 1; }
+      50% { cx: 600; cy: 210; }
+      90% { opacity: 1; }
+      100% { cx: 600; cy: 210; opacity: 0; }
+    }
+    .orbit-line { stroke-dasharray: 5 5; animation: orbit 2s linear infinite; }
+    .ring { transform-origin: center; animation: ringRotate 20s linear infinite; }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="280" fill="#080c14"/>
+  <rect width="900" height="280" fill="url(#grid3)" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="450" y="30" font-family="'Courier New', monospace" font-size="14" fill="#f5a623" text-anchor="middle" filter="url(#glow3)">// CLUSTER TOPOLOGY — WIREGUARD MESH</text>
+  <line x1="100" y1="40" x2="800" y2="40" stroke="#1a2a3a" stroke-width="0.5"/>
+
+  <!-- Connection lines -->
+  <line x1="300" y1="120" x2="450" y2="120" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
+  <line x1="450" y1="120" x2="600" y2="120" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
+  <line x1="300" y1="120" x2="220" y2="200" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
+  <line x1="600" y1="120" x2="680" y2="200" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
+  <line x1="220" y1="200" x2="680" y2="200" stroke="#1a3a5a" stroke-width="0.5" class="orbit-line" style="stroke-dasharray: 3 7"/>
+
+  <!-- Data packets -->
+  <circle r="3" fill="#f5a623" opacity="0">
+    <animate attributeName="cx" values="300;450;600" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="120;120;120" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="3" fill="#27ae60" opacity="0">
+    <animate attributeName="cx" values="450;335;220" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+    <animate attributeName="cy" values="120;160;200" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  <circle r="3" fill="#e94560" opacity="0">
+    <animate attributeName="cx" values="450;565;680" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+    <animate attributeName="cy" values="120;160;200" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+
+  <!-- Central node -->
+  <circle cx="450" cy="120" r="28" fill="#0d1a2a" stroke="#f5a623" stroke-width="2"/>
+  <circle cx="450" cy="120" r="35" fill="none" stroke="#f5a623" stroke-width="0.5" opacity="0.3">
+    <animate attributeName="r" values="35;42;35" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <text x="450" y="117" font-family="'Courier New', monospace" font-size="10" fill="#f5a623" text-anchor="middle" font-weight="bold">CENTRAL</text>
+  <text x="450" y="129" font-family="'Courier New', monospace" font-size="8" fill="#8a9ab0" text-anchor="middle">10.10.0.1</text>
+  <text x="450" y="160" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">治理 + 调度 + Redis</text>
+
+  <!-- Silicon Valley node -->
+  <circle cx="220" cy="200" r="22" fill="#0d1a2a" stroke="#27ae60" stroke-width="1.5"/>
+  <circle cx="220" cy="200" r="28" fill="none" stroke="#27ae60" stroke-width="0.5" opacity="0.2">
+    <animate attributeName="r" values="28;33;28" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.1;0.2" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <text x="220" y="197" font-family="'Courier New', monospace" font-size="9" fill="#27ae60" text-anchor="middle" font-weight="bold">SV</text>
+  <text x="220" y="208" font-family="'Courier New', monospace" font-size="7" fill="#8a9ab0" text-anchor="middle">10.10.0.2</text>
+  <text x="220" y="232" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">Worker 硅谷</text>
+
+  <!-- Tokyo node -->
+  <circle cx="680" cy="200" r="22" fill="#0d1a2a" stroke="#e94560" stroke-width="1.5"/>
+  <circle cx="680" cy="200" r="28" fill="none" stroke="#e94560" stroke-width="0.5" opacity="0.2">
+    <animate attributeName="r" values="28;33;28" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.1;0.2" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <text x="680" y="197" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle" font-weight="bold">TOKYO</text>
+  <text x="680" y="208" font-family="'Courier New', monospace" font-size="7" fill="#8a9ab0" text-anchor="middle">10.10.0.3</text>
+  <text x="680" y="232" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">Worker 东京</text>
+
+  <!-- Legend -->
+  <text x="50" y="268" font-family="'Courier New', monospace" font-size="9" fill="#3a5a7a">PROTOCOL: WireGuard Full-Mesh + SSH Tunnel Failover | LATENCY: &lt;2ms internal | AGENTS: 1000 max</text>
+</svg>
