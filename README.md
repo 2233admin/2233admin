@@ -12,26 +12,32 @@
 
 <div align="center">
 
-```
-                    ◆ PRTS OPERATIONAL DOSSIER ◆
+# 2233admin // SOLARIS RELAY
 
-    "把一千个 AI 塞进 Docker，让它们自己写代码。
-     不是开玩笑，是在建的东西。"
-```
+### Operational infrastructure for autonomous AI systems
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&pause=1600&color=D89A3D&center=true&vCenter=true&width=920&lines=terminal+operation+layer+%2F+gateway+routing+%2F+cluster+fabric;OpenClaw+deployment+systems+%2F+hardening+protocols+%2F+node+orchestration;not+concept+work+...+deployable+systems+only" alt="Typing SVG" />
 
 </div>
 
 <br>
 
-## `>_ OPERATIONAL BRIEF`
+## `>_ SITE DOSSIER`
 
-```diff
-+ 不写 CRUD。不做外包。不搞 PPT 架构。
+SOLARIS RELAY is a personal archive of deployable AI infrastructure.
 
-  构建让 AI 自治运行的基础设施——
-  从编码集群到服务器治理到量化交易，
-  全链路，全自动，全实战。
-```
+Work here is focused on:
+
+- terminal operation layers
+- OpenClaw deployment systems
+- distributed node fabrics
+- gateway routing layers
+- pre-exposure hardening
+- workflow infrastructure built to survive real use
+
+Not concept work.  
+Not interface theater.  
+Deployable systems only.
 
 <br>
 
@@ -47,7 +53,41 @@
 
 <br>
 
-## `>_ DEPLOYMENT MAP`
+## `>_ DEPLOYED MODULES`
+
+### `CICADA // M-01`
+**Entry-layer deployment interface**
+
+A one-click launcher that turns OpenClaw into something installable, startable, and usable.
+
+### `kaku-shell // T-02`
+**Terminal operation layer**
+
+A PowerShell-based AI coding terminal built for repeatable operator workflows.
+
+### `claw-mesh // N-03`
+**Distributed node fabric**
+
+WireGuard-backed networking and orchestration for OpenClaw nodes.
+
+### `free-llm-hub // G-04`
+**Multi-gateway access layer**
+
+Launch multiple free AI gateways through a simplified OpenAI-compatible interface.
+
+### `openclaw-hardener // S-05`
+**Integrity and hardening protocol**
+
+Self-check and hardening tools for OpenClaw deployments before public exposure.
+
+### `claw-rice // W-06`
+**Workflow operating kit**
+
+Battle-tested Claude and OpenClaw setup for terminal UX, skills, rules, and agents.
+
+<br>
+
+## `>_ NETWORK TOPOLOGY`
 
 <div align="center">
 
@@ -59,50 +99,69 @@
 
 </div>
 
+```text
+[ operator terminal ]
+         |
+         v
+[ workflow layer ]
+         |
+         v
+[ gateway / routing ]
+         |
+         v
+[ local nodes ] <--> [ mesh fabric ] <--> [ distributed agents ]
+         |
+         v
+[ hardening / integrity / control ]
+```
+
+Objective:
+turn AI from interface into infrastructure.
+
 <br>
 
-## `>_ COMBAT RECORD`
+## `>_ OPERATIONAL STACK`
 
-<table>
-<tr><td>
-
-### openclaw/openclaw — AI 助手网关平台
-
-```
- FIX  prompt cache 因 reasoning toggle 失效
- FIX  chat.inject 缺少 transcript 文件时报错
- FIX  kimi-coding 忽略用户自定义 baseUrl
- FIX  Gemini 3.1 在 google provider 下 fallback 路由失败
- FIX  文件上传因 mediaLocalRoots 缺失被拦截
-```
-
-</td></tr>
-</table>
-
-<br>
-
-## `>_ ARSENAL`
-
-```
-  LANGUAGES         Python · TypeScript · Rust · C
-  RUNTIME           Bun · Docker · systemd
-  DATA              Redis 7 · DuckDB · PostgreSQL
-  AI/ML             PyTorch · TFT · smolagents · LiteLLM
-  NETWORK           WireGuard · SSH Tunnel Mesh
-  TRADING           pytdx · QMT · THS · AKShare
-  INFRA             OPA/Rego · OpenClaw · Jinja2
-  FRONTEND          Next.js · Tailwind CSS
-  RE                Ghidra · Frida · GhidraMCP
+```text
+LANGUAGES    Python / TypeScript / Rust / C
+RUNTIME      Docker / systemd / self-hosted services
+NETWORK      WireGuard / SSH / distributed node fabrics
+DATA         Redis / PostgreSQL / local state layers
+FRONTEND     Next.js / Tailwind / terminal-first interfaces
+FOCUS        agent ops / routing / orchestration / hardening
 ```
 
 <br>
+
+## `>_ DEPLOYMENT DOCTRINE`
+
+- install speed matters
+- interfaces should collapse operational friction
+- routing layers should be explicit, observable, and replaceable
+- distributed nodes should be connectable without becoming chaos
+- defaults should not assume trusted environments
+- AI tooling should remain useful after the novelty is gone
+
+If a system only works inside a carefully staged demo, it is not finished.
+
+<br>
+
+## `>_ RELAY STATUS`
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=f5a623&icon_color=e94560&text_color=8a9ab0&ring_color=f5a623" width="49%"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=f5a623&text_color=8a9ab0" width="49%"/>
+<img src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&icon_color=d89a3d&text_color=9ba7b4&ring_color=d89a3d" width="49%"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&text_color=9ba7b4" width="49%"/>
 
 </div>
+
+<br>
+
+## `>_ ARCHIVE NOTE`
+
+This relay stores terminals, gateways, node fabrics, hardening layers, and operational kits.
+
+If your work begins where AI demos end, this archive may be relevant.
 
 <br>
 
