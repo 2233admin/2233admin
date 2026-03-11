@@ -1,106 +1,97 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280" width="900" height="280">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320">
   <defs>
-    <filter id="glow3">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f16"/>
+      <stop offset="100%" stop-color="#0f1722"/>
+    </linearGradient>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M 22 0 L 0 0 0 22" fill="none" stroke="#162231" stroke-width="0.55"/>
+    </pattern>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#111a28" stroke-width="0.3"/>
-    </pattern>
   </defs>
 
   <style>
-    @keyframes orbit { 0% { stroke-dashoffset: 20; } 100% { stroke-dashoffset: 0; } }
-    @keyframes nodePulse { 0%, 100% { r: 18; opacity: 0.8; } 50% { r: 22; opacity: 1; } }
-    @keyframes dataPulse { 0% { opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
-    @keyframes ringRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @keyframes packet1 {
-      0% { cx: 300; cy: 140; opacity: 0; }
-      10% { opacity: 1; }
-      50% { cx: 450; cy: 140; }
-      90% { opacity: 1; }
-      100% { cx: 600; cy: 140; opacity: 0; }
-    }
-    @keyframes packet2 {
-      0% { cx: 450; cy: 140; opacity: 0; }
-      10% { opacity: 1; }
-      50% { cx: 300; cy: 210; }
-      90% { opacity: 1; }
-      100% { cx: 300; cy: 210; opacity: 0; }
-    }
-    @keyframes packet3 {
-      0% { cx: 450; cy: 140; opacity: 0; }
-      10% { opacity: 1; }
-      50% { cx: 600; cy: 210; }
-      90% { opacity: 1; }
-      100% { cx: 600; cy: 210; opacity: 0; }
-    }
-    .orbit-line { stroke-dasharray: 5 5; animation: orbit 2s linear infinite; }
-    .ring { transform-origin: center; animation: ringRotate 20s linear infinite; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+    @keyframes flow { from { stroke-dashoffset: 18; } to { stroke-dashoffset: 0; } }
+    .panel { animation: fadeIn .4s ease-out forwards; }
+    .panel2 { animation: fadeIn .4s ease-out .08s forwards; opacity: 0; }
+    .panel3 { animation: fadeIn .4s ease-out .16s forwards; opacity: 0; }
+    .panel4 { animation: fadeIn .4s ease-out .24s forwards; opacity: 0; }
+    .panel5 { animation: fadeIn .4s ease-out .32s forwards; opacity: 0; }
+    .line { stroke-dasharray: 6 6; animation: flow 1s linear infinite; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
   </style>
 
-  <!-- Background -->
-  <rect width="900" height="280" fill="#080c14"/>
-  <rect width="900" height="280" fill="url(#grid3)" opacity="0.6"/>
+  <rect width="900" height="320" fill="url(#bg)"/>
+  <rect width="900" height="320" fill="url(#grid)" opacity="0.55"/>
+  <rect x="10" y="10" width="880" height="300" fill="none" stroke="#213245" stroke-width="1" rx="6"/>
+  <rect x="18" y="18" width="864" height="284" fill="none" stroke="#14202d" stroke-width="1" rx="4"/>
 
-  <!-- Title -->
-  <text x="450" y="30" font-family="'Courier New', monospace" font-size="14" fill="#f5a623" text-anchor="middle" filter="url(#glow3)">// CLUSTER TOPOLOGY — WIREGUARD MESH</text>
-  <line x1="100" y1="40" x2="800" y2="40" stroke="#1a2a3a" stroke-width="0.5"/>
+  <text x="34" y="40" font-family="'Courier New', monospace" font-size="12" fill="#6f8498">SOLARIS://NETWORK_TOPOLOGY</text>
+  <text x="866" y="40" text-anchor="end" font-family="'Courier New', monospace" font-size="11" fill="#d89a3d">FABRIC STATE: STABLE</text>
+  <line x1="28" y1="52" x2="872" y2="52" stroke="#203244" stroke-width="1"/>
+  <text x="450" y="82" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" fill="#d89a3d" filter="url(#glow)">// OPERATIONAL FABRIC — CONTROL TO EXECUTION</text>
 
-  <!-- Connection lines -->
-  <line x1="300" y1="120" x2="450" y2="120" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
-  <line x1="450" y1="120" x2="600" y2="120" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
-  <line x1="300" y1="120" x2="220" y2="200" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
-  <line x1="600" y1="120" x2="680" y2="200" stroke="#1a3a5a" stroke-width="1" class="orbit-line"/>
-  <line x1="220" y1="200" x2="680" y2="200" stroke="#1a3a5a" stroke-width="0.5" class="orbit-line" style="stroke-dasharray: 3 7"/>
+  <g class="panel">
+    <rect x="40" y="120" width="140" height="80" rx="6" fill="#111a25" stroke="#2a4259"/>
+    <rect x="40" y="120" width="140" height="4" fill="#d89a3d"/>
+    <text x="56" y="148" font-family="'Courier New', monospace" font-size="14" fill="#eef4fb">OPERATOR</text>
+    <text x="56" y="168" font-family="'Courier New', monospace" font-size="10" fill="#d89a3d">TERMINAL LAYER</text>
+    <text x="56" y="188" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">commands / edits /</text>
+    <text x="56" y="202" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">interactive control</text>
+  </g>
 
-  <!-- Data packets -->
-  <circle r="3" fill="#f5a623" opacity="0">
-    <animate attributeName="cx" values="300;450;600" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="cy" values="120;120;120" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  <circle r="3" fill="#27ae60" opacity="0">
-    <animate attributeName="cx" values="450;335;220" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
-    <animate attributeName="cy" values="120;160;200" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
-    <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
-  </circle>
-  <circle r="3" fill="#e94560" opacity="0">
-    <animate attributeName="cx" values="450;565;680" dur="2.8s" repeatCount="indefinite" begin="1s"/>
-    <animate attributeName="cy" values="120;160;200" dur="2.8s" repeatCount="indefinite" begin="1s"/>
-    <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" begin="1s"/>
-  </circle>
+  <g class="panel2">
+    <rect x="220" y="120" width="140" height="80" rx="6" fill="#111a25" stroke="#2a4259"/>
+    <rect x="220" y="120" width="140" height="4" fill="#7cb6ff"/>
+    <text x="236" y="148" font-family="'Courier New', monospace" font-size="14" fill="#eef4fb">WORKFLOW</text>
+    <text x="236" y="168" font-family="'Courier New', monospace" font-size="10" fill="#7cb6ff">ORCHESTRATION</text>
+    <text x="236" y="188" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">rules / skills /</text>
+    <text x="236" y="202" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">operator automation</text>
+  </g>
 
-  <!-- Central node -->
-  <circle cx="450" cy="120" r="28" fill="#0d1a2a" stroke="#f5a623" stroke-width="2"/>
-  <circle cx="450" cy="120" r="35" fill="none" stroke="#f5a623" stroke-width="0.5" opacity="0.3">
-    <animate attributeName="r" values="35;42;35" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  <text x="450" y="117" font-family="'Courier New', monospace" font-size="10" fill="#f5a623" text-anchor="middle" font-weight="bold">CENTRAL</text>
-  <text x="450" y="129" font-family="'Courier New', monospace" font-size="8" fill="#8a9ab0" text-anchor="middle">10.10.0.1</text>
-  <text x="450" y="160" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">治理 + 调度 + Redis</text>
+  <g class="panel3">
+    <rect x="400" y="108" width="160" height="104" rx="6" fill="#101922" stroke="#38536d"/>
+    <rect x="400" y="108" width="160" height="4" fill="#86d39b"/>
+    <text x="418" y="138" font-family="'Courier New', monospace" font-size="15" fill="#eef4fb">MESH FABRIC</text>
+    <text x="418" y="158" font-family="'Courier New', monospace" font-size="10" fill="#86d39b">ROUTING + NODE FABRIC</text>
+    <text x="418" y="180" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">WireGuard / gateway /</text>
+    <text x="418" y="194" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">node connectivity / dispatch</text>
+    <circle cx="538" cy="130" r="6" fill="#86d39b" class="pulse"/>
+  </g>
 
-  <!-- Silicon Valley node -->
-  <circle cx="220" cy="200" r="22" fill="#0d1a2a" stroke="#27ae60" stroke-width="1.5"/>
-  <circle cx="220" cy="200" r="28" fill="none" stroke="#27ae60" stroke-width="0.5" opacity="0.2">
-    <animate attributeName="r" values="28;33;28" dur="3.5s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.2;0.1;0.2" dur="3.5s" repeatCount="indefinite"/>
-  </circle>
-  <text x="220" y="197" font-family="'Courier New', monospace" font-size="9" fill="#27ae60" text-anchor="middle" font-weight="bold">SV</text>
-  <text x="220" y="208" font-family="'Courier New', monospace" font-size="7" fill="#8a9ab0" text-anchor="middle">10.10.0.2</text>
-  <text x="220" y="232" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">Worker 硅谷</text>
+  <g class="panel4">
+    <rect x="600" y="120" width="140" height="80" rx="6" fill="#111a25" stroke="#2a4259"/>
+    <rect x="600" y="120" width="140" height="4" fill="#b892ff"/>
+    <text x="616" y="148" font-family="'Courier New', monospace" font-size="14" fill="#eef4fb">LOCAL NODES</text>
+    <text x="616" y="168" font-family="'Courier New', monospace" font-size="10" fill="#b892ff">SERVICE LAYER</text>
+    <text x="616" y="188" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">gateways / tools /</text>
+    <text x="616" y="202" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">runtime services</text>
+  </g>
 
-  <!-- Tokyo node -->
-  <circle cx="680" cy="200" r="22" fill="#0d1a2a" stroke="#e94560" stroke-width="1.5"/>
-  <circle cx="680" cy="200" r="28" fill="none" stroke="#e94560" stroke-width="0.5" opacity="0.2">
-    <animate attributeName="r" values="28;33;28" dur="4s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.2;0.1;0.2" dur="4s" repeatCount="indefinite"/>
-  </circle>
-  <text x="680" y="197" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle" font-weight="bold">TOKYO</text>
-  <text x="680" y="208" font-family="'Courier New', monospace" font-size="7" fill="#8a9ab0" text-anchor="middle">10.10.0.3</text>
-  <text x="680" y="232" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a" text-anchor="middle">Worker 东京</text>
+  <g class="panel5">
+    <rect x="760" y="120" width="100" height="80" rx="6" fill="#111a25" stroke="#2a4259"/>
+    <rect x="760" y="120" width="100" height="4" fill="#ff7b8b"/>
+    <text x="776" y="148" font-family="'Courier New', monospace" font-size="14" fill="#eef4fb">AGENTS</text>
+    <text x="776" y="168" font-family="'Courier New', monospace" font-size="10" fill="#ff7b8b">EXECUTION</text>
+    <text x="776" y="188" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">distributed</text>
+    <text x="776" y="202" font-family="'Courier New', monospace" font-size="10" fill="#96a6b6">workers</text>
+  </g>
 
-  <!-- Legend -->
-  <text x="50" y="268" font-family="'Courier New', monospace" font-size="9" fill="#3a5a7a">PROTOCOL: WireGuard Full-Mesh + SSH Tunnel Failover | LATENCY: &lt;2ms internal | AGENTS: 1000 max</text>
+  <line x1="180" y1="160" x2="220" y2="160" stroke="#314b64" stroke-width="2" class="line"/>
+  <line x1="360" y1="160" x2="400" y2="160" stroke="#314b64" stroke-width="2" class="line"/>
+  <line x1="560" y1="160" x2="600" y2="160" stroke="#314b64" stroke-width="2" class="line"/>
+  <line x1="740" y1="160" x2="760" y2="160" stroke="#314b64" stroke-width="2" class="line"/>
+
+  <line x1="480" y1="212" x2="480" y2="252" stroke="#314b64" stroke-width="2" class="line"/>
+  <rect x="390" y="252" width="180" height="36" rx="6" fill="#111a25" stroke="#2a4259"/>
+  <rect x="390" y="252" width="180" height="4" fill="#d89a3d"/>
+  <text x="408" y="276" font-family="'Courier New', monospace" font-size="11" fill="#eef4fb">HARDENING / INTEGRITY / CONTROL</text>
+
+  <text x="50" y="302" font-family="'Courier New', monospace" font-size="9" fill="#6f8498">FLOW: operator terminal -> workflow layer -> mesh fabric -> local nodes -> distributed agents</text>
+  <text x="530" y="302" font-family="'Courier New', monospace" font-size="9" fill="#6f8498">GUARDRAIL: hardening and integrity checks under every deployment path</text>
 </svg>
