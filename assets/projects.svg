@@ -1,200 +1,137 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="900" height="560">
   <defs>
-    <filter id="glow2">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f16"/>
+      <stop offset="100%" stop-color="#0f1722"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d89a3d"/>
+      <stop offset="100%" stop-color="#ffb357"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121c28"/>
+      <stop offset="100%" stop-color="#0c141d"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#162231" stroke-width="0.6"/>
+    </pattern>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <linearGradient id="cardBg1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d1a2a"/>
-      <stop offset="100%" stop-color="#0a1220"/>
-    </linearGradient>
-    <linearGradient id="cardBg2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1a0d0d"/>
-      <stop offset="100%" stop-color="#120a0a"/>
-    </linearGradient>
-    <linearGradient id="barGrad1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#f5a623"/>
-      <stop offset="100%" stop-color="#e94560"/>
-    </linearGradient>
-    <linearGradient id="barGrad2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#27ae60"/>
-      <stop offset="100%" stop-color="#2ecc71"/>
-    </linearGradient>
-    <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#111a28" stroke-width="0.3"/>
-    </pattern>
   </defs>
 
   <style>
-    @keyframes fillBar1 { 0% { width: 0; } 100% { width: 160px; } }
-    @keyframes fillBar2 { 0% { width: 0; } 100% { width: 130px; } }
-    @keyframes fillBar3 { 0% { width: 0; } 100% { width: 145px; } }
-    @keyframes fillBar4 { 0% { width: 0; } 100% { width: 110px; } }
-    @keyframes cardAppear1 { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-    @keyframes cardAppear2 { 0%, 15% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-    @keyframes cardAppear3 { 0%, 30% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-    @keyframes cardAppear4 { 0%, 45% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse2 { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-    @keyframes dash { 0% { stroke-dashoffset: 8; } 100% { stroke-dashoffset: 0; } }
-    @keyframes threatPulse { 0%, 100% { fill: #e94560; } 50% { fill: #ff6b81; } }
-    .bar1 { animation: fillBar1 1.5s ease-out 0.5s forwards; }
-    .bar2 { animation: fillBar2 1.5s ease-out 0.7s forwards; }
-    .bar3 { animation: fillBar3 1.5s ease-out 0.9s forwards; }
-    .bar4 { animation: fillBar4 1.5s ease-out 1.1s forwards; }
-    .c1 { animation: cardAppear1 0.8s ease-out forwards; }
-    .c2 { animation: cardAppear2 0.8s ease-out forwards; }
-    .c3 { animation: cardAppear3 0.8s ease-out forwards; }
-    .c4 { animation: cardAppear4 0.8s ease-out forwards; }
-    .p2 { animation: pulse2 2s ease-in-out infinite; }
-    .dash-anim { stroke-dasharray: 4 4; animation: dash 1s linear infinite; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+    @keyframes sweep { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+    .card1 { animation: fadeUp .45s ease-out forwards; }
+    .card2 { animation: fadeUp .45s ease-out .1s forwards; opacity: 0; }
+    .card3 { animation: fadeUp .45s ease-out .2s forwards; opacity: 0; }
+    .card4 { animation: fadeUp .45s ease-out .3s forwards; opacity: 0; }
+    .card5 { animation: fadeUp .45s ease-out .4s forwards; opacity: 0; }
+    .card6 { animation: fadeUp .45s ease-out .5s forwards; opacity: 0; }
+    .pulse { animation: pulse 2.2s ease-in-out infinite; }
+    .dash { stroke-dasharray: 6 6; animation: sweep 1s linear infinite; }
   </style>
 
-  <!-- Background -->
-  <rect width="900" height="520" fill="#080c14"/>
-  <rect width="900" height="520" fill="url(#grid2)" opacity="0.6"/>
+  <rect width="900" height="560" fill="url(#bg)"/>
+  <rect width="900" height="560" fill="url(#grid)" opacity="0.55"/>
+  <rect x="10" y="10" width="880" height="540" fill="none" stroke="#213245" stroke-width="1" rx="6"/>
+  <rect x="18" y="18" width="864" height="524" fill="none" stroke="#14202d" stroke-width="1" rx="4"/>
 
-  <!-- Section header -->
-  <text x="450" y="30" font-family="'Courier New', monospace" font-size="14" fill="#f5a623" text-anchor="middle" filter="url(#glow2)">// DEPLOYED MODULES — SOLARIS RELAY</text>
-  <line x1="100" y1="40" x2="800" y2="40" stroke="#1a2a3a" stroke-width="0.5"/>
+  <text x="34" y="40" font-family="'Courier New', monospace" font-size="12" fill="#6f8498">SOLARIS://DEPLOYED_MODULES</text>
+  <text x="866" y="40" text-anchor="end" font-family="'Courier New', monospace" font-size="11" fill="#d89a3d">RELAY STATUS: ACTIVE</text>
+  <line x1="28" y1="52" x2="872" y2="52" stroke="#203244" stroke-width="1"/>
+  <text x="450" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" fill="#d89a3d" filter="url(#glow)">// FLAGSHIP MODULES — ENDFIELD OPERATION NODE</text>
 
-  <!-- Card 1: FSC-Mesh -->
-  <g class="c1">
-    <rect x="25" y="60" width="415" height="200" fill="url(#cardBg1)" rx="4" stroke="#1a3a5a" stroke-width="1"/>
-    <!-- Warning stripe top -->
-    <rect x="25" y="60" width="415" height="3" fill="#f5a623" rx="4" opacity="0.8"/>
-    <!-- Threat level -->
-    <rect x="355" y="72" width="70" height="18" fill="#1a0a0a" rx="9"/>
-    <text x="390" y="84" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle" class="p2">THREAT: S</text>
-
-    <text x="45" y="88" font-family="'Courier New', monospace" font-size="16" fill="#ffffff" font-weight="bold">FSC-Mesh</text>
-    <text x="155" y="88" font-family="'Courier New', monospace" font-size="10" fill="#4a6a8a">full-self-coding + claw-mesh</text>
-
-    <text x="45" y="110" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">千节点并行 AI 编码集群。1000 Docker Agent</text>
-    <text x="45" y="126" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">如 CUDA Cores 并行工作，四层治理体系：</text>
-    <text x="45" y="142" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">宪法 → 仲裁 → 质量 → 进化</text>
-
-    <!-- Tech tags -->
-    <rect x="45" y="158" width="75" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="82" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">TypeScript</text>
-    <rect x="128" y="158" width="40" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="148" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Bun</text>
-    <rect x="176" y="158" width="52" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="202" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Docker</text>
-    <rect x="236" y="158" width="48" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="260" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Redis</text>
-    <rect x="292" y="158" width="36" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="310" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Rust</text>
-
-    <!-- Progress bar -->
-    <text x="45" y="198" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a">DEPLOYMENT</text>
-    <rect x="120" y="189" width="180" height="10" fill="#0a1520" rx="2"/>
-    <rect x="120" y="189" width="0" height="10" fill="url(#barGrad1)" rx="2" class="bar1"/>
-    <text x="310" y="198" font-family="'Courier New', monospace" font-size="9" fill="#f5a623">89%</text>
-
-    <!-- Status indicator -->
-    <circle cx="385" y="195" r="5" fill="none" stroke="#f5a623" stroke-width="1" class="dash-anim"/>
-    <text x="398" y="199" font-family="'Courier New', monospace" font-size="8" fill="#f5a623">HOT</text>
+  <g class="card1">
+    <rect x="30" y="110" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="30" y="110" width="260" height="4" fill="url(#amber)"/>
+    <text x="46" y="138" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">CICADA // M-01</text>
+    <text x="46" y="158" font-family="'Courier New', monospace" font-size="11" fill="#d89a3d">ENTRY-LAYER DEPLOYMENT INTERFACE</text>
+    <text x="46" y="188" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">One-click launcher for OpenClaw</text>
+    <text x="46" y="204" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">built to collapse install friction</text>
+    <text x="46" y="220" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">into an actually usable starting point.</text>
+    <text x="46" y="250" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="94" y="250" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">front door / onboarding / launch</text>
+    <line x1="46" y1="264" x2="244" y2="264" stroke="#203244" class="dash"/>
+    <circle cx="248" cy="250" r="5" fill="#d89a3d" class="pulse"/>
   </g>
 
-  <!-- Card 2: A2Alaw -->
-  <g class="c2">
-    <rect x="460" y="60" width="415" height="200" fill="url(#cardBg1)" rx="4" stroke="#1a3a5a" stroke-width="1"/>
-    <rect x="460" y="60" width="415" height="3" fill="#27ae60" rx="4" opacity="0.8"/>
-    <rect x="790" y="72" width="70" height="18" fill="#0a1a0a" rx="9"/>
-    <text x="825" y="84" font-family="'Courier New', monospace" font-size="9" fill="#27ae60" text-anchor="middle" class="p2">THREAT: A</text>
-
-    <text x="480" y="88" font-family="'Courier New', monospace" font-size="16" fill="#ffffff" font-weight="bold">A2Alaw</text>
-    <text x="555" y="88" font-family="'Courier New', monospace" font-size="10" fill="#4a6a8a">AI-Native Server OS</text>
-
-    <text x="480" y="110" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">自然语言驱动的系统治理内核。七阶段</text>
-    <text x="480" y="126" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">流水线：NL → Intent → DAG → Sandbox →</text>
-    <text x="480" y="142" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">Audit。说句话，服务器自动执行。</text>
-
-    <rect x="480" y="158" width="55" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="507" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Python</text>
-    <rect x="543" y="158" width="58" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="572" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">FastAPI</text>
-    <rect x="609" y="158" width="48" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="633" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">Redis</text>
-    <rect x="665" y="158" width="68" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="699" y="170" font-family="'Courier New', monospace" font-size="9" fill="#5aafee" text-anchor="middle">OPA/Rego</text>
-
-    <text x="480" y="198" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a">DEPLOYMENT</text>
-    <rect x="555" y="189" width="180" height="10" fill="#0a1520" rx="2"/>
-    <rect x="555" y="189" width="0" height="10" fill="url(#barGrad2)" rx="2" class="bar2"/>
-    <text x="745" y="198" font-family="'Courier New', monospace" font-size="9" fill="#27ae60">72%</text>
-
-    <circle cx="820" cy="195" r="5" fill="none" stroke="#27ae60" stroke-width="1" class="dash-anim"/>
-    <text x="833" y="199" font-family="'Courier New', monospace" font-size="8" fill="#27ae60">LIVE</text>
+  <g class="card2">
+    <rect x="320" y="110" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="320" y="110" width="260" height="4" fill="#7cb6ff"/>
+    <text x="336" y="138" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">kaku-shell // T-02</text>
+    <text x="336" y="158" font-family="'Courier New', monospace" font-size="11" fill="#7cb6ff">TERMINAL OPERATION LAYER</text>
+    <text x="336" y="188" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">PowerShell-based AI coding terminal</text>
+    <text x="336" y="204" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">for error analysis, tool setup,</text>
+    <text x="336" y="220" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">and repeatable operator workflows.</text>
+    <text x="336" y="250" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="384" y="250" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">terminal / control / execution</text>
+    <line x1="336" y1="264" x2="534" y2="264" stroke="#203244" class="dash"/>
+    <circle cx="538" cy="250" r="5" fill="#7cb6ff" class="pulse"/>
   </g>
 
-  <!-- Card 3: quant-terminal -->
-  <g class="c3">
-    <rect x="25" y="280" width="415" height="200" fill="url(#cardBg2)" rx="4" stroke="#2a1a1a" stroke-width="1"/>
-    <rect x="25" y="280" width="415" height="3" fill="#e94560" rx="4" opacity="0.8"/>
-    <rect x="355" y="292" width="70" height="18" fill="#1a0a0a" rx="9"/>
-    <text x="390" y="304" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle">
-      <animate attributeName="fill" values="#e94560;#ff6b81;#e94560" dur="1.5s" repeatCount="indefinite"/>
-      THREAT: SS
-    </text>
-
-    <text x="45" y="308" font-family="'Courier New', monospace" font-size="16" fill="#ffffff" font-weight="bold">quant-terminal</text>
-    <text x="195" y="308" font-family="'Courier New', monospace" font-size="10" fill="#4a6a8a">A股日内量化交易</text>
-
-    <text x="45" y="330" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">全链路量化：通达信行情采集 → DuckDB</text>
-    <text x="45" y="346" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">OLAP 存储 → PyTorch TFT 预测 →</text>
-    <text x="45" y="362" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">多通道自动执行（QMT/THS/TDX）</text>
-
-    <rect x="45" y="378" width="55" height="18" fill="#1a0a0a" rx="3" stroke="#2a1a1a" stroke-width="0.5"/>
-    <text x="72" y="390" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle">Python</text>
-    <rect x="108" y="378" width="60" height="18" fill="#1a0a0a" rx="3" stroke="#2a1a1a" stroke-width="0.5"/>
-    <text x="138" y="390" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle">Next.js</text>
-    <rect x="176" y="378" width="60" height="18" fill="#1a0a0a" rx="3" stroke="#2a1a1a" stroke-width="0.5"/>
-    <text x="206" y="390" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle">PyTorch</text>
-    <rect x="244" y="378" width="57" height="18" fill="#1a0a0a" rx="3" stroke="#2a1a1a" stroke-width="0.5"/>
-    <text x="272" y="390" font-family="'Courier New', monospace" font-size="9" fill="#e94560" text-anchor="middle">DuckDB</text>
-
-    <text x="45" y="418" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a">DEPLOYMENT</text>
-    <rect x="120" y="409" width="180" height="10" fill="#1a0a0a" rx="2"/>
-    <rect x="120" y="409" width="0" height="10" fill="#e94560" rx="2" class="bar3"/>
-    <text x="310" y="418" font-family="'Courier New', monospace" font-size="9" fill="#e94560">81%</text>
-
-    <circle cx="385" cy="415" r="5" fill="none" stroke="#e94560" stroke-width="1" class="dash-anim"/>
-    <text x="398" y="419" font-family="'Courier New', monospace" font-size="8" fill="#e94560">DEV</text>
+  <g class="card3">
+    <rect x="610" y="110" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="610" y="110" width="260" height="4" fill="#86d39b"/>
+    <text x="626" y="138" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">claw-mesh // N-03</text>
+    <text x="626" y="158" font-family="'Courier New', monospace" font-size="11" fill="#86d39b">DISTRIBUTED NODE FABRIC</text>
+    <text x="626" y="188" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">WireGuard-backed connectivity</text>
+    <text x="626" y="204" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">and orchestration layer for</text>
+    <text x="626" y="220" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">distributed OpenClaw nodes.</text>
+    <text x="626" y="250" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="674" y="250" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">mesh / routing / expansion</text>
+    <line x1="626" y1="264" x2="824" y2="264" stroke="#203244" class="dash"/>
+    <circle cx="828" cy="250" r="5" fill="#86d39b" class="pulse"/>
   </g>
 
-  <!-- Card 4: FreeClaw -->
-  <g class="c4">
-    <rect x="460" y="280" width="415" height="200" fill="url(#cardBg1)" rx="4" stroke="#1a3a5a" stroke-width="1"/>
-    <rect x="460" y="280" width="415" height="3" fill="#5b8def" rx="4" opacity="0.8"/>
-    <rect x="790" y="292" width="70" height="18" fill="#0a0a1a" rx="9"/>
-    <text x="825" y="304" font-family="'Courier New', monospace" font-size="9" fill="#5b8def" text-anchor="middle" class="p2">THREAT: B</text>
-
-    <text x="480" y="308" font-family="'Courier New', monospace" font-size="16" fill="#ffffff" font-weight="bold">FreeClaw</text>
-    <text x="572" y="308" font-family="'Courier New', monospace" font-size="10" fill="#4a6a8a">AI Gateway + Smart Router</text>
-
-    <text x="480" y="330" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">40+ 供应商 API 统一管理。AI 复杂度</text>
-    <text x="480" y="346" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">预测自动选模型，三级路由：premium →</text>
-    <text x="480" y="362" font-family="'Courier New', monospace" font-size="11" fill="#8a9ab0">standard → economy，熔断器保护。</text>
-
-    <rect x="480" y="378" width="55" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="507" y="390" font-family="'Courier New', monospace" font-size="9" fill="#5b8def" text-anchor="middle">Python</text>
-    <rect x="543" y="378" width="72" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="579" y="390" font-family="'Courier New', monospace" font-size="9" fill="#5b8def" text-anchor="middle">OpenClaw</text>
-    <rect x="623" y="378" width="53" height="18" fill="#0a1a2a" rx="3" stroke="#1a3a5a" stroke-width="0.5"/>
-    <text x="649" y="390" font-family="'Courier New', monospace" font-size="9" fill="#5b8def" text-anchor="middle">LiteLLM</text>
-
-    <text x="480" y="418" font-family="'Courier New', monospace" font-size="9" fill="#4a6a8a">DEPLOYMENT</text>
-    <rect x="555" y="409" width="180" height="10" fill="#0a1520" rx="2"/>
-    <rect x="555" y="409" width="0" height="10" fill="#5b8def" rx="2" class="bar4"/>
-    <text x="745" y="418" font-family="'Courier New', monospace" font-size="9" fill="#5b8def">61%</text>
-
-    <circle cx="820" cy="415" r="5" fill="none" stroke="#5b8def" stroke-width="1" class="dash-anim"/>
-    <text x="833" y="419" font-family="'Courier New', monospace" font-size="8" fill="#5b8def">SVC</text>
+  <g class="card4">
+    <rect x="30" y="320" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="30" y="320" width="260" height="4" fill="#b892ff"/>
+    <text x="46" y="348" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">free-llm-hub // G-04</text>
+    <text x="46" y="368" font-family="'Courier New', monospace" font-size="11" fill="#b892ff">MULTI-GATEWAY ACCESS LAYER</text>
+    <text x="46" y="398" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">One-command launch layer for</text>
+    <text x="46" y="414" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">multiple free AI gateways behind</text>
+    <text x="46" y="430" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">a simplified OpenAI-compatible API.</text>
+    <text x="46" y="460" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="94" y="460" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">gateway / compatibility / access</text>
+    <line x1="46" y1="474" x2="244" y2="474" stroke="#203244" class="dash"/>
+    <circle cx="248" cy="460" r="5" fill="#b892ff" class="pulse"/>
   </g>
 
-  <!-- Bottom connecting lines (network topology hint) -->
-  <line x1="232" y1="260" x2="232" y2="280" stroke="#1a3a5a" stroke-width="0.5" class="dash-anim"/>
-  <line x1="667" y1="260" x2="667" y2="280" stroke="#1a3a5a" stroke-width="0.5" class="dash-anim"/>
-  <line x1="232" y1="270" x2="667" y2="270" stroke="#1a3a5a" stroke-width="0.5" class="dash-anim"/>
+  <g class="card5">
+    <rect x="320" y="320" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="320" y="320" width="260" height="4" fill="#ff7b8b"/>
+    <text x="336" y="348" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">openclaw-hardener // S-05</text>
+    <text x="336" y="368" font-family="'Courier New', monospace" font-size="11" fill="#ff7b8b">INTEGRITY AND HARDENING PROTOCOL</text>
+    <text x="336" y="398" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">Security checks and hardening</text>
+    <text x="336" y="414" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">for OpenClaw deployments before</text>
+    <text x="336" y="430" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">public exposure turns fatal.</text>
+    <text x="336" y="460" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="384" y="460" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">audit / hardening / exposure control</text>
+    <line x1="336" y1="474" x2="534" y2="474" stroke="#203244" class="dash"/>
+    <circle cx="538" cy="460" r="5" fill="#ff7b8b" class="pulse"/>
+  </g>
+
+  <g class="card6">
+    <rect x="610" y="320" width="260" height="180" rx="6" fill="url(#steel)" stroke="#2a4259"/>
+    <rect x="610" y="320" width="260" height="4" fill="#d89a3d"/>
+    <text x="626" y="348" font-family="'Courier New', monospace" font-size="18" fill="#eef4fb">claw-rice // W-06</text>
+    <text x="626" y="368" font-family="'Courier New', monospace" font-size="11" fill="#d89a3d">WORKFLOW OPERATING KIT</text>
+    <text x="626" y="398" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">Battle-tested setup pack for</text>
+    <text x="626" y="414" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">Claude and OpenClaw workflows,</text>
+    <text x="626" y="430" font-family="'Courier New', monospace" font-size="11" fill="#96a6b6">rules, skills, and agents.</text>
+    <text x="626" y="460" font-family="'Courier New', monospace" font-size="10" fill="#6f8498">ROLE</text>
+    <text x="674" y="460" font-family="'Courier New', monospace" font-size="10" fill="#cfd7df">workflow / config / operator kit</text>
+    <line x1="626" y1="474" x2="824" y2="474" stroke="#203244" class="dash"/>
+    <circle cx="828" cy="460" r="5" fill="#d89a3d" class="pulse"/>
+  </g>
+
+  <line x1="290" y1="200" x2="320" y2="200" stroke="#27405a" class="dash"/>
+  <line x1="580" y1="200" x2="610" y2="200" stroke="#27405a" class="dash"/>
+  <line x1="160" y1="290" x2="160" y2="320" stroke="#27405a" class="dash"/>
+  <line x1="450" y1="290" x2="450" y2="320" stroke="#27405a" class="dash"/>
+  <line x1="740" y1="290" x2="740" y2="320" stroke="#27405a" class="dash"/>
 </svg>
