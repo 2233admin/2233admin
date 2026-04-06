@@ -85,6 +85,11 @@ Self-check and hardening tools for OpenClaw deployments before public exposure.
 
 Battle-tested Claude and OpenClaw setup for terminal UX, skills, rules, and agents.
 
+### `obsidian-llm-wiki // K-07`
+**Knowledge compilation engine**
+
+Karpathy's LLM Wiki concept, installable as an Obsidian plugin. MCP server lets AI agents read, search, and compile your notes into structured knowledge bases. Works with or without Obsidian running.
+
 <br>
 
 ## `>_ NETWORK TOPOLOGY`
