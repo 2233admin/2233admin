@@ -4,7 +4,7 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E0382C&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%D0%9D%D0%9E%D0%A7%D0%9D%D0%90%D0%AF+%D0%A1%D0%9C%D0%95%D0%9D%D0%90+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
 
-<img src="https://count.getloli.com/@2233admin?name=2233admin&theme=moebooru&padding=7&align=center" height="72" alt="visitor counter">
+<img src="https://komarev.com/ghpvc/?username=2233admin&style=flat-square&color=e0382c&label=VISITORS" alt="visitor counter">
 
 </div>
 
@@ -18,12 +18,12 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <div align="center">
 
-<a href="https://github.com/2233admin/obsidian-llm-wiki"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=obsidian-llm-wiki&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="obsidian-llm-wiki"></a>
-<a href="https://github.com/2233admin/opencli-Razormind"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=opencli-Razormind&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="opencli-Razormind"></a>
-<a href="https://github.com/2233admin/qmtcli"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=qmtcli&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="qmtcli"></a>
-<a href="https://github.com/2233admin/cli2skill"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=cli2skill&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="cli2skill"></a>
-<a href="https://github.com/2233admin/glyph-arts"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=glyph-arts&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="glyph-arts"></a>
-<a href="https://github.com/2233admin/motion.md"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=motion.md&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="motion.md"></a>
+<a href="https://github.com/2233admin/obsidian-llm-wiki"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-obsidian-llm-wiki.svg" alt="obsidian-llm-wiki"></a>
+<a href="https://github.com/2233admin/opencli-Razormind"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-opencli-Razormind.svg" alt="opencli-Razormind"></a>
+<a href="https://github.com/2233admin/qmtcli"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-qmtcli.svg" alt="qmtcli"></a>
+<a href="https://github.com/2233admin/cli2skill"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-cli2skill.svg" alt="cli2skill"></a>
+<a href="https://github.com/2233admin/glyph-arts"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-glyph-arts.svg" alt="glyph-arts"></a>
+<a href="https://github.com/2233admin/motion.md"><img width="49%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/pin-motion.md.svg" alt="motion.md"></a>
 
 </div>
 
@@ -43,12 +43,10 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <div align="center">
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&rank_icon=github&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true&ring_color=e0382c" alt="GitHub stats">
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&langs_count=8&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="Top languages">
+<img height="170" src="https://raw.githubusercontent.com/2233admin/2233admin/output/stats.svg" alt="GitHub stats">
+<img height="170" src="https://raw.githubusercontent.com/2233admin/2233admin/output/top-langs.svg" alt="Top languages">
 
 <img src="https://streak-stats.demolab.com?user=2233admin&hide_border=true&background=00000000&ring=E0382C&fire=E0382C&currStreakLabel=E0382C&currStreakNum=8B90B8&sideNums=8B90B8&sideLabels=8B90B8&dates=8B90B8&stroke=F0A04A" alt="Contribution streak">
-
-<img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=2233admin&bg_color=00000000&color=8b90b8&line=e0382c&point=f0a04a&area=true&area_color=e0382c&hide_border=true&custom_title=after%20the%20lights%20go%20out" alt="Contribution activity graph">
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/2233admin/2233admin/output/snake-dark.svg">
