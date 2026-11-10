@@ -1,181 +1,75 @@
 <div align="center">
 
+<img src="assets/hero.svg" width="100%" alt="2233admin — software that keeps working after the lights go out. A wolf-eared maid in a tracksuit jacket with a mechanical arm squats on a rain-soaked rooftop beside a black cat; behind her a derelict giant robot, ruined arches, a rocket launch and a ringed planet over a retro-futurist city.">
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E0382C&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%D0%9D%D0%9E%D0%A7%D0%9D%D0%90%D0%AF+%D0%A1%D0%9C%D0%95%D0%9D%D0%90+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
+
+<img src="https://count.getloli.com/@2233admin?name=2233admin&theme=moebooru&padding=7&align=center" height="72" alt="visitor counter">
+
+</div>
+
+<br>
+
+I build tools for coding agents, and the factory around them: the queue, the gates, the merge, the measurement. Most of it is small and command-line shaped. All of it is meant to be left running.
+
+<br>
+
+### 🛰️ Selected work
+
+<div align="center">
+
+<a href="https://github.com/2233admin/obsidian-llm-wiki"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=obsidian-llm-wiki&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="obsidian-llm-wiki"></a>
+<a href="https://github.com/2233admin/opencli-Razormind"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=opencli-Razormind&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="opencli-Razormind"></a>
+<a href="https://github.com/2233admin/qmtcli"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=qmtcli&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="qmtcli"></a>
+<a href="https://github.com/2233admin/cli2skill"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=cli2skill&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="cli2skill"></a>
+<a href="https://github.com/2233admin/glyph-arts"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=glyph-arts&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="glyph-arts"></a>
+<a href="https://github.com/2233admin/motion.md"><img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=2233admin&repo=motion.md&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="motion.md"></a>
+
+</div>
+
+<br>
+
+### 🔧 Arsenal
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=py,ts,rust,c,docker,linux,redis,postgres,nextjs,tailwind,powershell,obsidian&perline=12" alt="Python, TypeScript, Rust, C, Docker, Linux, Redis, PostgreSQL, Next.js, Tailwind, PowerShell, Obsidian">
+
+</div>
+
+<br>
+
+### 🌙 Night shift log
+
+<div align="center">
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&rank_icon=github&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true&ring_color=e0382c" alt="GitHub stats">
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&langs_count=8&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true" alt="Top languages">
+
+<img src="https://streak-stats.demolab.com?user=2233admin&hide_border=true&background=00000000&ring=E0382C&fire=E0382C&currStreakLabel=E0382C&currStreakNum=8B90B8&sideNums=8B90B8&sideLabels=8B90B8&dates=8B90B8&stroke=F0A04A" alt="Contribution streak">
+
+<img width="98%" src="https://github-readme-activity-graph.vercel.app/graph?username=2233admin&bg_color=00000000&color=8b90b8&line=e0382c&point=f0a04a&area=true&area_color=e0382c&hide_border=true&custom_title=after%20the%20lights%20go%20out" alt="Contribution activity graph">
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/header.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/header.svg">
-  <img src="assets/header.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/2233admin/2233admin/output/snake-dark.svg">
+  <img width="98%" src="https://raw.githubusercontent.com/2233admin/2233admin/output/snake.svg" alt="Snake eating the contribution graph">
 </picture>
 
 </div>
 
 <br>
 
-<div align="center">
+### ✍️ How I work
 
-# 2233admin // SOLARIS RELAY
-
-### Operational infrastructure for autonomous AI systems
-
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&pause=1600&color=D89A3D&center=true&vCenter=true&width=920&lines=terminal+operation+layer+%2F+gateway+routing+%2F+cluster+fabric;OpenClaw+deployment+systems+%2F+hardening+protocols+%2F+node+orchestration;not+concept+work+...+deployable+systems+only" alt="Typing SVG" />
-
-</div>
+Structure should carry the rules; a prompt shouldn't have to.<br>
+Measure by ablation, not by impression.<br>
+If it only works inside the demo, it isn't finished.
 
 <br>
-
-## `>_ SITE DOSSIER`
-
-SOLARIS RELAY is a personal archive of deployable AI infrastructure.
-
-Work here is focused on:
-
-- terminal operation layers
-- OpenClaw deployment systems
-- distributed node fabrics
-- gateway routing layers
-- pre-exposure hardening
-- workflow infrastructure built to survive real use
-
-Not concept work.  
-Not interface theater.  
-Deployable systems only.
-
-<br>
-
-<div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/projects.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/projects.svg">
-  <img src="assets/projects.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/rule-dark.svg">
+  <img src="assets/rule-light.svg" width="100%" alt="">
 </picture>
 
-</div>
-
-<br>
-
-## `>_ DEPLOYED MODULES`
-
-### `CICADA // M-01`
-**Entry-layer deployment interface**
-
-A one-click launcher that turns OpenClaw into something installable, startable, and usable.
-
-### `kaku-shell // T-02`
-**Terminal operation layer**
-
-A PowerShell-based AI coding terminal built for repeatable operator workflows.
-
-### `claw-mesh // N-03`
-**Distributed node fabric**
-
-WireGuard-backed networking and orchestration for OpenClaw nodes.
-
-### `free-llm-hub // G-04`
-**Multi-gateway access layer**
-
-Launch multiple free AI gateways through a simplified OpenAI-compatible interface.
-
-### `openclaw-hardener // S-05`
-**Integrity and hardening protocol**
-
-Self-check and hardening tools for OpenClaw deployments before public exposure.
-
-### `claw-rice // W-06`
-**Workflow operating kit**
-
-Battle-tested Claude and OpenClaw setup for terminal UX, skills, rules, and agents.
-
-### `obsidian-llm-wiki // K-07`
-**Knowledge compilation engine**
-
-Karpathy's LLM Wiki concept, installable as an Obsidian plugin. MCP server lets AI agents read, search, and compile your notes into structured knowledge bases. Works with or without Obsidian running.
-
-<br>
-
-## `>_ NETWORK TOPOLOGY`
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/topology.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/topology.svg">
-  <img src="assets/topology.svg" width="100%"/>
-</picture>
-
-</div>
-
-```text
-[ operator terminal ]
-         |
-         v
-[ workflow layer ]
-         |
-         v
-[ gateway / routing ]
-         |
-         v
-[ local nodes ] <--> [ mesh fabric ] <--> [ distributed agents ]
-         |
-         v
-[ hardening / integrity / control ]
-```
-
-Objective:
-turn AI from interface into infrastructure.
-
-<br>
-
-## `>_ OPERATIONAL STACK`
-
-```text
-LANGUAGES    Python / TypeScript / Rust / C
-RUNTIME      Docker / systemd / self-hosted services
-NETWORK      WireGuard / SSH / distributed node fabrics
-DATA         Redis / PostgreSQL / local state layers
-FRONTEND     Next.js / Tailwind / terminal-first interfaces
-FOCUS        agent ops / routing / orchestration / hardening
-```
-
-<br>
-
-## `>_ DEPLOYMENT DOCTRINE`
-
-- install speed matters
-- interfaces should collapse operational friction
-- routing layers should be explicit, observable, and replaceable
-- distributed nodes should be connectable without becoming chaos
-- defaults should not assume trusted environments
-- AI tooling should remain useful after the novelty is gone
-
-If a system only works inside a carefully staged demo, it is not finished.
-
-<br>
-
-## `>_ RELAY STATUS`
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&icon_color=d89a3d&text_color=9ba7b4&ring_color=d89a3d" width="49%"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&text_color=9ba7b4" width="49%"/>
-
-</div>
-
-<br>
-
-## `>_ ARCHIVE NOTE`
-
-This relay stores terminals, gateways, node fabrics, hardening layers, and operational kits.
-
-If your work begins where AI demos end, this archive may be relevant.
-
-<br>
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/footer.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/footer.svg">
-  <img src="assets/footer.svg" width="100%"/>
-</picture>
-
-</div>
+<div align="center"><sub>НОЧНАЯ СМЕНА · night shift</sub></div>
