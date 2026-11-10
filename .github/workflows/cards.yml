@@ -1,7 +1,7 @@
 name: profile cards
 on:
   schedule:
-    - cron: "17 */12 * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -11,62 +11,91 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: mkdir -p dist
-      - name: Stats card
-        uses: stats-organization/github-readme-stats-action@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&rank_icon=github&ring_color=e0382c&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
-          path: dist/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Languages card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=8&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
-          path: dist/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin obsidian-llm-wiki
+          python-version: "3.12"
+      - name: Draw the page
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: ${{ github.repository_owner }}
+        run: |
+          pip install --quiet pillow
+          mkdir -p dist
+          python scripts/fetch.py dist/data.json
+          python scripts/talk.py assets/whale/idle.gif dist/talk.svg dist/data.json
+          python scripts/building.py assets/whale dist/nightshift dist/data.json
+          python scripts/card.py assets/whale/thumbs-up.gif dist/card.svg dist/data.json
+          rm -f dist/talk_prev.svg
+      - name: Pin ${{ github.repository_owner }}/obsidian-llm-wiki
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=obsidian-llm-wiki&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-obsidian-llm-wiki.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin opencli-Razormind
+      - name: Pin ${{ github.repository_owner }}/opencli-Razormind
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=opencli-Razormind&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-opencli-Razormind.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin qmtcli
+      - name: Pin ${{ github.repository_owner }}/qmtcli
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=qmtcli&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-qmtcli.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin cli2skill
+      - name: Pin ${{ github.repository_owner }}/cli2skill
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=cli2skill&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-cli2skill.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin glyph-arts
+      - name: Pin ${{ github.repository_owner }}/glyph-arts
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=glyph-arts&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-glyph-arts.svg
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Pin motion.md
+      - name: Pin ${{ github.repository_owner }}/motion.md
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: pin
           options: username=${{ github.repository_owner }}&repo=motion.md&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
           path: dist/pin-motion.md.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pin XartLab/design-pipeline
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: pin
+          options: username=XartLab&repo=design-pipeline&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
+          path: dist/pin-XartLab-design-pipeline.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pin XartLab/code-intel-pipeline
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: pin
+          options: username=XartLab&repo=code-intel-pipeline&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
+          path: dist/pin-XartLab-code-intel-pipeline.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pin XartLab/dream-harness
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: pin
+          options: username=XartLab&repo=dream-harness&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
+          path: dist/pin-XartLab-dream-harness.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pin ccch1mneyyy/dsh-Go
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: pin
+          options: username=ccch1mneyyy&repo=dsh-Go&title_color=e0382c&text_color=8b90b8&icon_color=f0a04a&bg_color=00000000&hide_border=true
+          path: dist/pin-ccch1mneyyy-dsh-Go.svg
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Snake
         uses: Platane/snk/svg-only@v3
