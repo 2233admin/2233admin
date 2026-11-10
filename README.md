@@ -14,7 +14,7 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <br>
 
-### 🎨 Selected work
+### 🛰️ Selected work
 
 <div align="center">
 
@@ -29,7 +29,7 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <br>
 
-### 🧰 Paintbox
+### 🔧 Arsenal
 
 <div align="center">
 
