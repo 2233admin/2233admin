@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/night.svg" width="100%" alt="An oil-style painting: a girl in cat-ear headphones sits on a rooftop beside a glowing laptop and a cat, watching tall clouds over a city at blue hour. 2233admin — software that keeps working after the lights go out.">
+<img src="assets/night.svg" width="100%" alt="A thick-paint style painting: a girl in headphones sits under a vermilion torii gate with a laptop and a cat, silhouetted against a huge full moon over a city, rings of glowing danmaku turning in the night sky. 2233admin — software that keeps working after the lights go out.">
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E77F63&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%E5%A4%9C%E7%8F%AD%E4%B8%8D%E6%89%93%E7%83%8A+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
 
