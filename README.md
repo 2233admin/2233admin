@@ -14,6 +14,10 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <br>
 
+<img src="assets/aquarium.svg" width="100%" alt="Pixel-art aquarium: a very fat whale swims past a sunken robot head, glowing crystals, seaweed and small fish.">
+
+<br>
+
 ### 🛰️ Selected work
 
 <div align="center">
