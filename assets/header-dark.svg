@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440" role="img" aria-label="2233admin. Software that keeps working after the lights go out.">
+  <rect width="1200" height="440" rx="14" fill="#171614"/>
+  <g font-family="ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="2.6" fill="#8E877B">
+    <text x="72" y="84">2233ADMIN</text>
+    <text x="1096" y="84" text-anchor="end">NIGHT SHIFT</text>
+  </g>
+  <circle cx="1120" cy="79.5" r="6" fill="#DE8A62">
+    <animate attributeName="opacity" values="1;0.35;1" dur="7s" repeatCount="indefinite"/>
+  </circle>
+  <g font-family="'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,'Songti SC','Noto Serif CJK SC',SimSun,serif" font-size="68" fill="#ECE6DA" letter-spacing="-1.2">
+    <text x="70" y="218">Software that keeps working</text>
+    <text x="70" y="298" font-style="italic" fill="#DE8A62">after the lights go out.</text>
+  </g>
+  <line x1="72" y1="350" x2="1128" y2="350" stroke="#34312C" stroke-width="1"/>
+  <g font-family="ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="1.4" fill="#8E877B">
+    <text x="72" y="386">AGENT TOOLING</text>
+    <text x="424" y="386">SOFTWARE FACTORIES</text>
+    <text x="776" y="386">TRADING TERMINALS</text>
+    <text x="1128" y="386" text-anchor="end">UTC+8</text>
+  </g>
+</svg>

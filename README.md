@@ -1,181 +1,47 @@
-<div align="center">
-
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/header.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/header.svg">
-  <img src="assets/header.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
+  <img src="assets/header-light.svg" width="100%" alt="2233admin — Software that keeps working after the lights go out.">
 </picture>
 
-</div>
+<br>
+
+I build tools for coding agents, and the factory around them: the queue, the gates, the merge, the measurement. Most of it is small and command-line shaped. All of it is meant to be left running.
 
 <br>
 
-<div align="center">
+#### Selected work
 
-# 2233admin // SOLARIS RELAY
+**[obsidian-llm-wiki](https://github.com/2233admin/obsidian-llm-wiki)**<br>
+A markdown vault compiled into a knowledge base agents can read, search and cite.
 
-### Operational infrastructure for autonomous AI systems
+**[opencli-Razormind](https://github.com/2233admin/opencli-Razormind)**<br>
+A self-hosted research pipeline. Collect, process, link the evidence; the data stays on your machine.
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&pause=1600&color=D89A3D&center=true&vCenter=true&width=920&lines=terminal+operation+layer+%2F+gateway+routing+%2F+cluster+fabric;OpenClaw+deployment+systems+%2F+hardening+protocols+%2F+node+orchestration;not+concept+work+...+deployable+systems+only" alt="Typing SVG" />
+**[qmtcli](https://github.com/2233admin/qmtcli)**<br>
+QMT wrapped as a local JSON CLI for A-share trading. Every order passes a guardrail.
 
-</div>
+**[cli2skill](https://github.com/2233admin/cli2skill)**<br>
+Turns any CLI or MCP server into an agent skill, without the idle processes.
 
-<br>
+**[glyph-arts](https://github.com/2233admin/glyph-arts)**<br>
+Charts drawn directly in the terminal. No browser, no files.
 
-## `>_ SITE DOSSIER`
-
-SOLARIS RELAY is a personal archive of deployable AI infrastructure.
-
-Work here is focused on:
-
-- terminal operation layers
-- OpenClaw deployment systems
-- distributed node fabrics
-- gateway routing layers
-- pre-exposure hardening
-- workflow infrastructure built to survive real use
-
-Not concept work.  
-Not interface theater.  
-Deployable systems only.
+**[motion.md](https://github.com/2233admin/motion.md)**<br>
+A plain-text format for describing motion and animation intent to a coding agent.
 
 <br>
 
-<div align="center">
+#### How I work
+
+Structure should carry the rules; a prompt shouldn't have to.<br>
+Measure by ablation, not by impression.<br>
+If it only works inside the demo, it isn't finished.
+
+<br>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/projects.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/projects.svg">
-  <img src="assets/projects.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/rule-dark.svg">
+  <img src="assets/rule-light.svg" width="100%" alt="">
 </picture>
 
-</div>
-
-<br>
-
-## `>_ DEPLOYED MODULES`
-
-### `CICADA // M-01`
-**Entry-layer deployment interface**
-
-A one-click launcher that turns OpenClaw into something installable, startable, and usable.
-
-### `kaku-shell // T-02`
-**Terminal operation layer**
-
-A PowerShell-based AI coding terminal built for repeatable operator workflows.
-
-### `claw-mesh // N-03`
-**Distributed node fabric**
-
-WireGuard-backed networking and orchestration for OpenClaw nodes.
-
-### `free-llm-hub // G-04`
-**Multi-gateway access layer**
-
-Launch multiple free AI gateways through a simplified OpenAI-compatible interface.
-
-### `openclaw-hardener // S-05`
-**Integrity and hardening protocol**
-
-Self-check and hardening tools for OpenClaw deployments before public exposure.
-
-### `claw-rice // W-06`
-**Workflow operating kit**
-
-Battle-tested Claude and OpenClaw setup for terminal UX, skills, rules, and agents.
-
-### `obsidian-llm-wiki // K-07`
-**Knowledge compilation engine**
-
-Karpathy's LLM Wiki concept, installable as an Obsidian plugin. MCP server lets AI agents read, search, and compile your notes into structured knowledge bases. Works with or without Obsidian running.
-
-<br>
-
-## `>_ NETWORK TOPOLOGY`
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/topology.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/topology.svg">
-  <img src="assets/topology.svg" width="100%"/>
-</picture>
-
-</div>
-
-```text
-[ operator terminal ]
-         |
-         v
-[ workflow layer ]
-         |
-         v
-[ gateway / routing ]
-         |
-         v
-[ local nodes ] <--> [ mesh fabric ] <--> [ distributed agents ]
-         |
-         v
-[ hardening / integrity / control ]
-```
-
-Objective:
-turn AI from interface into infrastructure.
-
-<br>
-
-## `>_ OPERATIONAL STACK`
-
-```text
-LANGUAGES    Python / TypeScript / Rust / C
-RUNTIME      Docker / systemd / self-hosted services
-NETWORK      WireGuard / SSH / distributed node fabrics
-DATA         Redis / PostgreSQL / local state layers
-FRONTEND     Next.js / Tailwind / terminal-first interfaces
-FOCUS        agent ops / routing / orchestration / hardening
-```
-
-<br>
-
-## `>_ DEPLOYMENT DOCTRINE`
-
-- install speed matters
-- interfaces should collapse operational friction
-- routing layers should be explicit, observable, and replaceable
-- distributed nodes should be connectable without becoming chaos
-- defaults should not assume trusted environments
-- AI tooling should remain useful after the novelty is gone
-
-If a system only works inside a carefully staged demo, it is not finished.
-
-<br>
-
-## `>_ RELAY STATUS`
-
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=2233admin&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&icon_color=d89a3d&text_color=9ba7b4&ring_color=d89a3d" width="49%"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=2233admin&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=d89a3d&text_color=9ba7b4" width="49%"/>
-
-</div>
-
-<br>
-
-## `>_ ARCHIVE NOTE`
-
-This relay stores terminals, gateways, node fabrics, hardening layers, and operational kits.
-
-If your work begins where AI demos end, this archive may be relevant.
-
-<br>
-
-<div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/footer.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/footer.svg">
-  <img src="assets/footer.svg" width="100%"/>
-</picture>
-
-</div>
+<sub>No badges, no counters. The work is in the repositories.</sub>
