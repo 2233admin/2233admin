@@ -2,7 +2,7 @@
 
 <img src="assets/hero.svg" width="100%" alt="2233admin — software that keeps working after the lights go out. A wolf-eared maid in a tracksuit jacket with a mechanical arm squats on a rain-soaked rooftop beside a black cat; behind her a derelict giant robot, ruined arches, a rocket launch and a ringed planet over a retro-futurist city.">
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E0382C&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%D0%9D%D0%9E%D0%A7%D0%9D%D0%90%D0%AF+%D0%A1%D0%9C%D0%95%D0%9D%D0%90+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
+<img src="assets/talk.svg" width="100%" alt="Visual-novel dialogue box: the whale maid welcomes you to the 2233admin workshop, says she is watching the night shift, and asks for a star.">
 
 <img src="https://komarev.com/ghpvc/?username=2233admin&style=flat-square&color=e0382c&label=VISITORS" alt="visitor counter">
 
