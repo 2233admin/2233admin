@@ -16,7 +16,7 @@
 
 <img src="https://raw.githubusercontent.com/2233admin/2233admin/output/nightshift.gif" width="100%" alt="Pixel-art cutaway of a night-shift building with eight rooms, each with the whale maid at work or asleep: terminal room, planning room, break room, bunk room, assembly line, bath, shipping and sign-off.">
 
-<sub>Live board. Rooms light up with the last 24 hours of pushes; on a quiet day everyone sleeps. Redrawn every six hours.<br>鲸娘 · the whale maid is from <a href="https://github.com/ccch1mneyyy/dsh-Go">DSH Go</a>.</sub>
+<sub>Live board. Rooms light up with the last two days of contributions; on a quiet day everyone sleeps. Redrawn every six hours.<br>鲸娘 · the whale maid is from <a href="https://github.com/ccch1mneyyy/dsh-Go">DSH Go</a>.</sub>
 
 </div>
 
@@ -68,7 +68,7 @@ Tools for coding agents, and the factory around them: the queue, the gates, the 
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/2233admin/2233admin/output/card.svg" width="100%" alt="Operator file: stars, followers, public repositories, pushes in the last 24 hours, and languages.">
+<img src="https://raw.githubusercontent.com/2233admin/2233admin/output/card.svg" width="100%" alt="Operator file: stars, followers, public repositories, contributions in the last two days, and languages.">
 
 <img src="https://streak-stats.demolab.com?user=2233admin&hide_border=true&background=00000000&ring=E0382C&fire=E0382C&currStreakLabel=E0382C&currStreakNum=8B90B8&sideNums=8B90B8&sideLabels=8B90B8&dates=8B90B8&stroke=F0A04A" alt="Contribution streak">
 

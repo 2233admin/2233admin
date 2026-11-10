@@ -9,7 +9,7 @@ SERIF = "'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif"
 MONO = "ui-monospace,'SF Mono',Menlo,Consolas,monospace"
 LC = {"Python": "#3572A5", "TypeScript": "#3178c6", "Rust": "#dea584", "JavaScript": "#f1e05a", "Go": "#00ADD8", "Shell": "#89e051", "C": "#8b95a3", "C++": "#f34b7d", "HTML": "#e34c26", "Dart": "#00B4AB", "Gleam": "#ffaff3", "Lua": "#5a67d8", "PowerShell": "#5391fe"}
 o = []; A = o.append
-A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Operator file for {D["user"]}: {D["stars"]} stars, {D["followers"]} followers, {D["repos"]} public repositories, {D["pushes"]} pushes in the last 24 hours.">')
+A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Operator file for {D["user"]}: {D["stars"]} stars, {D["followers"]} followers, {D["repos"]} public repositories, {D.get("activity", 0)} contributions in the last two days.">')
 A(f'''<defs><clipPath id="f"><rect width="{W}" height="{H}" rx="14"/></clipPath>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1026"/><stop offset="1" stop-color="#1a1430"/></linearGradient>
 <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" opacity=".18"/></pattern></defs>
@@ -26,7 +26,7 @@ A(f'<text x="60" y="262" font-family="{MONO}" font-size="12.5" letter-spacing="2
 A(f'<text x="60" y="282" font-family="{MONO}" font-size="12.5" letter-spacing="2.4" fill="#6f7aa6">TRAIT  DOES NOT CLOCK OUT</text>')
 # stat bars
 X0 = 470
-rows = [("STARS", D["stars"], 20000), ("FOLLOWERS", D["followers"], 2000), ("REPOS", D["repos"], 1000), ("PUSHES / 24H", D["pushes"], 60)]
+rows = [("STARS", D["stars"], 20000), ("FOLLOWERS", D["followers"], 2000), ("REPOS", D["repos"], 1000), ("LAST 2 DAYS", D.get("activity", 0), 150)]
 for i, (lab, v, mx) in enumerate(rows):
     y = 84 + i * 36; seg = min(12, max(1 if v else 0, round(12 * math.log10(v + 1) / math.log10(mx + 1))))
     A(f'<text x="{X0}" y="{y}" font-family="{MONO}" font-size="14" letter-spacing="2.2" fill="#8b90b8">{lab}</text>')

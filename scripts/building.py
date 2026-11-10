@@ -2,9 +2,9 @@ import sys, math, random, json
 from PIL import Image, ImageDraw, ImageSequence
 SRC=sys.argv[1]; OUT=sys.argv[2]
 D=json.load(open(sys.argv[3])) if len(sys.argv)>3 else {'pushes':99}
-PUSH=D.get('pushes',0)
+PUSH=D.get('activity',D.get('pushes',0))
 PRIORITY=['typing','building','thinking','thumbs-up','happy','music','swim']
-AWAKE=set(PRIORITY[:min(7,1+math.ceil(PUSH/2))]) if PUSH else set()
+AWAKE=set(PRIORITY[:min(7,math.ceil(PUSH/4))]) if PUSH else set()
 RW,RH,ROOF,GND=100,76,16,6
 W,H=RW*4,ROOF+RH*2+GND
 T=80; TICK=100
@@ -137,7 +137,7 @@ def r_thumbs(d,x,y,t):
     d.rectangle([x+82,y+40,x+96,y+69],fill='#14100c',outline='#5a4030'); d.rectangle([x+84,y+36,x+94,y+39],fill='#1f8a4c'); d.point([x+94,y+56],fill='#f0c040')
     d.rectangle([x+3,y+60,x+12,y+69],fill='#b0763a',outline='#5a3a1c'); d.line([x+3,y+64,x+12,y+64],fill='#e9dcc0')
 ROOMS={'typing':r_typing,'thinking':r_thinking,'music':r_music,'sleeping':r_sleeping,'building':r_building,'swim':r_swim,'happy':r_happy,'thumbs-up':r_thumbs}
-FONT={'P':["111","101","111","100","100"],'U':["101","101","101","101","111"],'E':["111","100","110","100","111"],'0':["111","101","101","101","111"],'1':["010","110","010","010","111"],'2':["111","001","111","100","111"],'3':["111","001","111","001","111"],'4':["101","101","111","001","001"],'5':["111","100","111","001","111"],'6':["111","100","111","101","111"],'7':["111","001","010","010","010"],'8':["111","101","111","101","111"],'9':["111","101","111","001","111"],'N':["101","111","111","111","101"],'I':["111","010","010","010","111"],'G':["111","100","101","101","111"],'H':["101","101","111","101","101"],'T':["111","010","010","010","010"],'S':["111","100","111","001","111"],'F':["111","100","110","100","100"],' ':["0","0","0","0","0"]}
+FONT={'D':["110","101","101","101","110"],'A':["111","101","111","101","101"],'Y':["101","101","111","010","010"],'P':["111","101","111","100","100"],'U':["101","101","101","101","111"],'E':["111","100","110","100","111"],'0':["111","101","101","101","111"],'1':["010","110","010","010","111"],'2':["111","001","111","100","111"],'3':["111","001","111","001","111"],'4':["101","101","111","001","001"],'5':["111","100","111","001","111"],'6':["111","100","111","101","111"],'7':["111","001","010","010","010"],'8':["111","101","111","101","111"],'9':["111","101","111","001","111"],'N':["101","111","111","111","101"],'I':["111","010","010","010","111"],'G':["111","100","101","101","111"],'H':["101","101","111","101","101"],'T':["111","010","010","010","010"],'S':["111","100","111","001","111"],'F':["111","100","110","100","100"],' ':["0","0","0","0","0"]}
 STARS=[(random.Random(i).randrange(W),random.Random(i*7).randrange(0,9)) for i in range(40)]
 frames=[]
 for t in range(T):
@@ -154,11 +154,11 @@ for t in range(T):
             for rx,v in enumerate(row):
                 if v=='1': d.point([tx+ci*4+rx,ROOF-11+ry],fill='#6a1a14' if dim else '#ff4a3a')
     d.line([tx-2,ROOF-5,tx+len(txt)*4,ROOF-5],fill='#2a3350')
-    t2='PUSHES '+str(min(PUSH,999)); t2x=W-8-len(t2)*4
+    t2='2 DAYS  '+str(min(PUSH,9999)); t2x=W-8-len(t2)*4
     for ci,ch in enumerate(t2):
         for ry,row in enumerate(FONT[ch]):
             for rx,v in enumerate(row):
-                if v=='1': d.point([t2x+ci*4+rx,ROOF-11+ry],fill='#f0a04a' if ch.isdigit() else '#56607a')
+                if v=='1': d.point([t2x+ci*4+rx,ROOF-11+ry],fill='#f0a04a' if ci>6 else '#56607a')
     d.rectangle([0,H-GND,W-1,H-1],fill='#0c0f1c'); d.line([0,H-GND,W-1,H-GND],fill='#2a3350')
     for r in range(2):
         for c in range(4):

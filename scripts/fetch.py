@@ -31,4 +31,12 @@ try:
             if when >= cut: d["pushes"] += 1; seen.append(name)
     d["push_repos"] = len(set(seen))
 except Exception as e: print("events:", e)
+d["activity"] = d["pushes"]
+try:
+    q = {"query": 'query{user(login:"%s"){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}' % U}
+    r = urllib.request.Request("https://api.github.com/graphql", data=json.dumps(q).encode(), headers={"Authorization": "Bearer " + (T or ""), "User-Agent": "profile-build"})
+    weeks = json.load(urllib.request.urlopen(r, timeout=30))["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+    days = [x for w in weeks for x in w["contributionDays"]]
+    d["activity"] = sum(x["contributionCount"] for x in days[-2:])
+except Exception as e: print("calendar:", e)
 json.dump(d, open(sys.argv[1], "w")); print(d)

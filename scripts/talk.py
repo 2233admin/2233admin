@@ -14,9 +14,9 @@ lines=[("Oh, a visitor. Welcome to 2233admin's","workshop. Come in, the kettle's
        ("We build tools for coding agents here,","and the factory they work in."),
        None,
        ("Stay as long as you like. If something","is useful, leave a star on your way out.")]
-n=D.get('pushes',0); m=D.get('push_repos',0); last=D.get('last_repo','')
-if n: shift=(f"Today's shift: {n} push{'es' if n!=1 else ''} across {m} repo{'s' if m!=1 else ''}.", (f"Last on the line: {last[:26]}." if last else "The lights go out; the work doesn't."))
-else: shift=("Quiet shift so far. Nothing pushed today.","I dusted the servers anyway.")
+n=D.get('activity',0); last=D.get('last_repo','')
+if n: shift=(f"This shift: {n} contribution{'s' if n!=1 else ''} in two days.", (f"Last on the line: {last[:26]}." if last else "The lights go out; the work doesn't."))
+else: shift=("Quiet shift so far. Nothing on the line yet.","I dusted the servers anyway.")
 lines=[l or shift for l in lines]
 SLOT=6.5; CYC=SLOT*len(lines)
 o=[];A=o.append
