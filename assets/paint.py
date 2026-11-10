@@ -1,231 +1,179 @@
 import random, math, sys
 out = sys.argv[1]
-R = random.Random(2233)
-W, H, HOR = 1200, 520, 410
-MX, MY, MR = 970, 304, 122
+R = random.Random(1957)
+W, H, HOR = 1200, 520, 404
+o=[]; A=o.append
 def hexrgb(h): h=h.lstrip('#'); return tuple(int(h[i:i+2],16) for i in (0,2,4))
 def rgbhex(c): return '#%02x%02x%02x' % tuple(max(0,min(255,int(round(v)))) for v in c)
-def lerp(a,b,t): return tuple(a[i]+(b[i]-a[i])*t for i in range(3))
-def ramp(stops, t):
-    t=max(0,min(1,t))
-    for (t0,c0),(t1,c1) in zip(stops,stops[1:]):
-        if t<=t1: return lerp(hexrgb(c0),hexrgb(c1),(t-t0)/(t1-t0) if t1>t0 else 0)
-    return hexrgb(stops[-1][1])
-def jit(c,a):
-    d=R.gauss(0,a); return (c[0]+d+R.gauss(0,a/3), c[1]+d+R.gauss(0,a/3), c[2]+d+R.gauss(0,a/3))
-SKY=[(0,'#060a22'),(.28,'#0e1845'),(.55,'#1c2b68'),(.76,'#3f478c'),(.9,'#96608f'),(1,'#eea07c')]
-def sky_at(x,y):
-    c=ramp(SKY,y/HOR)
-    d=math.hypot(x-MX,y-MY)
-    g=max(0,1-d/300)**2
-    return lerp(c,hexrgb('#8fa2e6'),g*.6)
-o=[]; A=o.append
-A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Thick-paint style painting: a girl in headphones sits under a vermilion torii gate with a laptop and a cat, silhouetted against a huge full moon over a city, rings of glowing danmaku bullets turning in the night sky. 2233admin, software that keeps working after the lights go out.">')
-FILT='''<filter id="{id}" filterUnits="userSpaceOnUse" x="-30" y="-30" width="1260" height="580" color-interpolation-filters="sRGB">
-<feTurbulence type="fractalNoise" baseFrequency="0.016 0.028" numOctaves="2" seed="{seed}" result="n"/>
-<feGaussianBlur in="SourceGraphic" stdDeviation="{blur}" result="soft"/><feDisplacementMap in="soft" in2="n" scale="{scale}" xChannelSelector="R" yChannelSelector="G" result="d"/>
-<feColorMatrix in="d" type="luminanceToAlpha" result="lum"/>
-<feGaussianBlur in="lum" stdDeviation="2.2" result="bump"/>
-<feDiffuseLighting in="bump" surfaceScale="2.4" diffuseConstant="1.2" lighting-color="#ffffff" result="rel"><feDistantLight azimuth="225" elevation="56"/></feDiffuseLighting>
-<feSpecularLighting in="bump" surfaceScale="2.4" specularConstant=".1" specularExponent="16" lighting-color="#fff4e0" result="spec"><feDistantLight azimuth="225" elevation="56"/></feSpecularLighting>
-<feTurbulence type="fractalNoise" baseFrequency="0.85 0.3" numOctaves="2" seed="3" result="g"/>
-<feDiffuseLighting in="g" surfaceScale="1.2" diffuseConstant="1.12" lighting-color="#ffffff" result="l"><feDistantLight azimuth="235" elevation="62"/></feDiffuseLighting>
-<feBlend in="d" in2="rel" mode="multiply" result="p1"/>
-<feBlend in="p1" in2="l" mode="multiply" result="p2"/>
-<feComposite in="spec" in2="p2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="p3"/>
-<feComposite in="p3" in2="d" operator="in"/>
-</filter>'''
-A('<defs>'+FILT.format(id='oil',seed=7,scale=10,blur=1.3)+FILT.format(id='oil2',seed=11,scale=4,blur=.5)+f'''
-<radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff2cf" stop-opacity=".85"/><stop offset=".35" stop-color="#cfd8ff" stop-opacity=".35"/><stop offset="1" stop-color="#9fb2ff" stop-opacity="0"/></radialGradient>
-<radialGradient id="moonf" cx="42%" cy="38%" r="65%"><stop offset="0" stop-color="#fffbe9"/><stop offset=".7" stop-color="#fbe6b4"/><stop offset="1" stop-color="#e9c592"/></radialGradient>
-<radialGradient id="warm" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffc56b" stop-opacity=".8"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/></radialGradient>
-<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#9ff5ea" stop-opacity=".7"/><stop offset="1" stop-color="#9ff5ea" stop-opacity="0"/></radialGradient>
-<radialGradient id="bR"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#ff5d78"/><stop offset="1" stop-color="#ff2d55" stop-opacity="0"/></radialGradient>
-<radialGradient id="bC"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#7fe7ff"/><stop offset="1" stop-color="#3cc8ff" stop-opacity="0"/></radialGradient>
-<radialGradient id="bG"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#ffd76a"/><stop offset="1" stop-color="#ffb02e" stop-opacity="0"/></radialGradient>
-<linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">''' + ''.join(f'<stop offset="{t*HOR/H:.3f}" stop-color="{c}"/>' for t,c in SKY) + '''<stop offset="1" stop-color="#eea07c"/></linearGradient>
+def mix(a,b,t): a,b=hexrgb(a),hexrgb(b); return rgbhex(tuple(a[i]+(b[i]-a[i])*t for i in range(3)))
+SANS="'DIN Condensed','Bahnschrift','Arial Narrow','Helvetica Neue',Arial,'PingFang SC',sans-serif"
+MONO="ui-monospace,'SF Mono',Menlo,Consolas,monospace"
+A(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Digital painting: a doomer maid in a striped tracksuit jacket, with a mechanical arm and a bottle of kvass, squats on a panel-block rooftop next to a cat. Beyond a red rooftop sign reading NOCHNAYA SMENA (night shift), a derelict giant robot slumps among apartment blocks, a rocket climbs past a ringed planet at dusk, and snow falls. 2233admin.">')
+A('''<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070d18"/><stop offset=".28" stop-color="#12233a"/><stop offset=".5" stop-color="#2f4257"/><stop offset=".64" stop-color="#75605f"/><stop offset=".73" stop-color="#cf8456"/><stop offset=".79" stop-color="#f6c27c"/><stop offset="1" stop-color="#f6c27c"/></linearGradient>
+<radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe2a8" stop-opacity=".95"/><stop offset=".3" stop-color="#ff9a52" stop-opacity=".55"/><stop offset="1" stop-color="#ff7a3a" stop-opacity="0"/></radialGradient>
+<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e79a68" stop-opacity="0"/><stop offset="1" stop-color="#f0a873" stop-opacity=".75"/></linearGradient>
+<linearGradient id="planet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b3147"/><stop offset=".55" stop-color="#5d7f95"/><stop offset="1" stop-color="#e9c7a4"/></linearGradient>
+<linearGradient id="pfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<mask id="pm"><rect x="700" y="-60" width="560" height="400" fill="url(#pfade)"/></mask>
+<linearGradient id="trail" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb070" stop-opacity="0"/><stop offset=".5" stop-color="#ffc79a" stop-opacity=".7"/><stop offset="1" stop-color="#fff"/></linearGradient>
+<linearGradient id="robot" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d6a5a"/><stop offset=".18" stop-color="#3a4250"/><stop offset="1" stop-color="#1a222e"/></linearGradient>
+<linearGradient id="rfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b98a70" stop-opacity="0"/><stop offset="1" stop-color="#c9906c" stop-opacity=".8"/></linearGradient>
+<linearGradient id="roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b212b"/><stop offset="1" stop-color="#07090d"/></linearGradient>
+<linearGradient id="jacket" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5b4a52"/><stop offset=".25" stop-color="#232c44"/><stop offset="1" stop-color="#0e1424"/></linearGradient>
+<linearGradient id="pants" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4c4250"/><stop offset=".3" stop-color="#1c2338"/><stop offset="1" stop-color="#0b0f1c"/></linearGradient>
+<linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd9bd"/><stop offset=".55" stop-color="#e8b9a4"/><stop offset="1" stop-color="#9c7f8c"/></linearGradient>
+<linearGradient id="hair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0dc"/><stop offset=".4" stop-color="#c9d0da"/><stop offset="1" stop-color="#5d6b84"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9d6c0"/><stop offset=".35" stop-color="#8b95a3"/><stop offset="1" stop-color="#2b3240"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c8793a"/><stop offset=".4" stop-color="#6a3414"/><stop offset="1" stop-color="#2a1408"/></linearGradient>
+<radialGradient id="vig" cx="50%" cy="46%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".62"/></radialGradient>
+<radialGradient id="eye" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#ff5a3c"/><stop offset="1" stop-color="#ff2a1a" stop-opacity="0"/></radialGradient>
+<filter id="b1"><feGaussianBlur stdDeviation="1"/></filter><filter id="b2"><feGaussianBlur stdDeviation="2.2"/></filter>
+<filter id="b6" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
+<filter id="b18" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/><feColorMatrix type="matrix" values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  .9 .9 .9 0 -1.05"/></filter>
 <clipPath id="frame"><rect width="1200" height="520" rx="14"/></clipPath>
-<clipPath id="above"><rect width="1200" height="402"/></clipPath>
 </defs>''')
 A('<g clip-path="url(#frame)">')
-# ---------- background layer ----------
-A('<g filter="url(#oil)">')
-A(f'<rect x="-30" y="-30" width="{W+60}" height="{H+60}" fill="url(#skyg)"/>')
-A('<g stroke-linecap="round" fill="none">')
-for i in range(1150):
-    x=R.uniform(-40,W+40); y=R.uniform(-10,HOR+5)
-    c=jit(sky_at(x,y+R.gauss(0,14)), 6)
-    # strokes swirl gently around the moon
-    d=math.hypot(x-MX,y-MY)
-    if d<330: ang=math.atan2(y-MY,x-MX)+math.pi/2+R.gauss(0,.25)
-    else: ang=math.radians(R.gauss(-4,10))
-    L=R.uniform(30,85); w=R.uniform(8,22)
-    dx,dy=math.cos(ang)*L/2,math.sin(ang)*L/2
-    A(f'<path d="M{x-dx:.0f} {y-dy:.0f}Q{x+R.gauss(0,5):.0f} {y+R.gauss(0,5):.0f} {x+dx:.0f} {y+dy:.0f}" stroke="{rgbhex(c)}" stroke-width="{w:.0f}" opacity="{R.uniform(.6,.92):.2f}"/>')
-A('</g>')
-# moon
-A(f'<circle cx="{MX}" cy="{MY}" r="{MR*2.6}" fill="url(#halo)"/><circle cx="{MX}" cy="{MY}" r="{MR}" fill="url(#moonf)"/>')
+A(f'<rect width="{W}" height="{H}" fill="url(#sky)"/>')
+A('<ellipse cx="250" cy="410" rx="560" ry="250" fill="url(#sun)"/>')
+# stars
 for i in range(70):
-    a=R.uniform(0,6.283); r=math.sqrt(R.random())*(MR-10)
-    x=MX+math.cos(a)*r; y=MY+math.sin(a)*r
-    c=R.choice(['#e3c89a','#f3dcae','#fff7dc','#d9b98c','#fff'])
-    A(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="{R.uniform(6,16):.0f}" ry="{R.uniform(4,9):.0f}" fill="{c}" opacity="{R.uniform(.25,.6):.2f}" transform="rotate({R.uniform(0,180):.0f} {x:.0f} {y:.0f})"/>')
-# clouds (moonlit from the right)
-CL=[(0,'#f4f1ff'),(.14,'#aebbf0'),(.36,'#6470bb'),(.62,'#343c84'),(.84,'#5a4484'),(1,'#d07f8c')]
-def cloud(puffs, n, top, bot, lx=.45):
-    dabs=[]
-    for (cx,cy,rx,ry) in puffs:
-        for i in range(int(n*rx*ry/3000)):
-            a=R.uniform(0,2*math.pi); r=math.sqrt(R.random())
-            x=cx+math.cos(a)*r*rx; y=cy+math.sin(a)*r*ry
-            loc=(-math.sin(a)*r*0.45 + math.cos(a)*r*lx)
-            t=(y-top)/(bot-top)*.75 - loc*0.5 + R.gauss(0,.05)+.22
-            dabs.append((t,x,y,R.uniform(7,16),a))
-    dabs.sort(key=lambda d:-d[0])
-    for t,x,y,rad,a in dabs:
-        c=jit(ramp(CL,t),5)
-        A(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="{rad*1.3:.0f}" ry="{rad*.8:.0f}" fill="{rgbhex(c)}" opacity="{R.uniform(.78,.98):.2f}" transform="rotate({math.degrees(a)+90+R.gauss(0,20):.0f} {x:.0f} {y:.0f})"/>')
-big=[(240,398,190,40),(420,394,170,42),(170,350,95,50),(290,330,110,60),(400,340,95,54),(320,278,82,50),(245,254,58,40),(385,258,52,36),(312,226,44,30),(490,362,75,36),(110,386,90,30),(575,392,90,24)]
-cloud(big, 110, 192, 428, .6)
-cloud([(690,250,70,14),(760,244,50,12),(610,256,50,10),(1150,150,70,14),(1090,158,50,10)], 80, 228, 275, .2)
-# city
-A(f'<rect x="-30" y="{HOR-16}" width="{W+60}" height="46" fill="#ffc79a" opacity=".3"/>')
-x=-10; blds=[]
+    x=R.uniform(0,W); y=R.uniform(0,170)*R.random()**.5
+    A(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{R.uniform(.5,1.4):.1f}" fill="#eaf2ff" opacity="{R.uniform(.3,.9):.2f}"/>')
+# ringed planet
+A('''<g mask="url(#pm)" opacity=".62"><g transform="rotate(-20 985 120)">
+<path d="M725 120a260 44 0 0 1 520 0" fill="none" stroke="#c9d3dc" stroke-width="13" opacity=".5"/>
+<circle cx="985" cy="120" r="148" fill="url(#planet)"/>
+<path d="M850 80q135 34 270-10M842 128q143 30 286-6M860 176q125 22 250-8" stroke="#dfe7ee" stroke-width="9" fill="none" opacity=".12"/>
+<path d="M725 120a260 44 0 0 0 520 0" fill="none" stroke="#e6edf2" stroke-width="13" opacity=".8"/><path d="M745 120a240 36 0 0 0 480 0" fill="none" stroke="#31465a" stroke-width="3" opacity=".8"/>
+</g></g>''')
+# clouds: dark bodies with lit bellies
+A('<g filter="url(#b18)">')
+for i in range(16):
+    x=R.uniform(-80,1250); y=R.uniform(150,330); rx=R.uniform(120,300); ry=R.uniform(10,26)
+    t=(y-150)/180
+    A(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" fill="{mix("#16263a","#5a4a56",t)}" opacity=".85"/>')
+    k=max(0,1-abs(x-250)/900)
+    A(f'<ellipse cx="{x-30:.0f}" cy="{y+ry*.9:.0f}" rx="{rx*.8:.0f}" ry="{ry*.35:.0f}" fill="{mix("#c06a58","#ffb074",k)}" opacity="{.25+.55*k*t:.2f}"/>')
+A('</g>')
+# rocket
+A('''<path d="M548 404C552 320 590 210 700 96" stroke="#ffb884" stroke-width="16" fill="none" opacity=".35" filter="url(#b6)"/>
+<path d="M548 404C552 320 590 210 700 96" stroke="url(#trail)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<circle cx="700" cy="96" r="16" fill="#fff3d8" opacity=".55" filter="url(#b6)"><animate attributeName="opacity" values=".55;.9;.55" dur="1.6s" repeatCount="indefinite"/></circle>
+<path d="M698 99l8-16 4 12z" fill="#eef2f6"/><circle cx="700" cy="97" r="2.6" fill="#fff"/>
+<g filter="url(#b6)" fill="#f3c9a0" opacity=".7"><ellipse cx="548" cy="398" rx="46" ry="14"/><ellipse cx="520" cy="388" rx="26" ry="12"/><ellipse cx="580" cy="390" rx="24" ry="10"/></g>''')
+# far skyline (hazy)
+A('<g filter="url(#b1)">')
+x=-10
 while x<W+10:
-    w=R.uniform(16,46); h=R.uniform(10,44) if R.random()>.1 else R.uniform(50,74)
-    blds.append((x,w,h)); x+=w+R.uniform(-4,5)
-for (x,w,h) in blds:
-    A(f'<rect x="{x:.0f}" y="{440-h:.0f}" width="{w:.0f}" height="{h+10:.0f}" fill="{rgbhex(jit(hexrgb("#141840"),4))}"/>')
-    A(f'<rect x="{x+w-3:.0f}" y="{440-h:.0f}" width="3" height="{h:.0f}" fill="#5a67b4" opacity=".5"/>')
-    for i in range(int(w*h/70)):
-        A(f'<rect x="{x+R.uniform(3,w-6):.0f}" y="{440-h+R.uniform(4,h-4):.0f}" width="3" height="3.5" fill="{R.choice(["#ffd58a","#ffe7b5","#ffb46b","#9ff0e6"])}" opacity="{R.uniform(.5,1):.2f}"/>')
+    w=R.uniform(26,70); h=R.uniform(16,52)
+    A(f'<rect x="{x:.0f}" y="{412-h:.0f}" width="{w:.0f}" height="{h+30:.0f}" fill="{mix("#8a6660","#5b5562",R.random())}"/>')
+    x+=w+R.uniform(-6,10)
+# TV tower + swooping rocket monument
+A('''<g fill="#5a5262"><path d="M176 412l7-150h2l7 150zM181 262h8v-70h-2l-2-60-2 60h-2z"/><ellipse cx="185" cy="268" rx="13" ry="7"/><rect x="179" y="300" width="12" height="5"/></g>
+<path d="M330 412C352 330 392 262 452 214L446 222C404 276 378 338 372 412Z" fill="#6a5a66"/><path d="M452 214l14-16-4 20z" fill="#7b6c78"/>''')
 A('</g>')
-# ---------- danmaku (unfiltered, turning) ----------
-A('<g clip-path="url(#above)">')
-def ring(n, r, kind, rad, phase, dur, cw):
-    s=[]
-    for i in range(n):
-        a=phase+2*math.pi*i/n
-        s.append(f'<circle cx="{MX+math.cos(a)*r:.1f}" cy="{MY+math.sin(a)*r:.1f}" r="{rad}" fill="url(#b{kind})"/>')
-    to = 360 if cw else -360
-    A(f'<g opacity=".95">{"".join(s)}<animateTransform attributeName="transform" type="rotate" from="0 {MX} {MY}" to="{to} {MX} {MY}" dur="{dur}s" repeatCount="indefinite"/></g>')
-ring(30,170,'R',9,0,160,True)
-ring(36,222,'C',8,.09,200,False)
-ring(42,276,'G',7.5,.04,240,True)
-ring(48,332,'R',7,.07,280,False)
-ring(54,390,'C',6.5,0,320,True)
-# spiral arms of rice-grain bullets
-s=[]
-for arm in range(6):
-    for k in range(9):
-        r=150+k*29; a=arm*math.pi/3+k*.17
-        x=MX+math.cos(a)*r; y=MY+math.sin(a)*r
-        s.append(f'<ellipse cx="{x:.1f}" cy="{y:.1f}" rx="9" ry="3.6" fill="#fff" opacity="{.9-k*.06:.2f}" transform="rotate({math.degrees(a):.0f} {x:.1f} {y:.1f})"/><ellipse cx="{x:.1f}" cy="{y:.1f}" rx="13" ry="6" fill="#ff4d6d" opacity=".28" transform="rotate({math.degrees(a):.0f} {x:.1f} {y:.1f})"/>')
-A(f'<g>{"".join(s)}<animateTransform attributeName="transform" type="rotate" from="0 {MX} {MY}" to="360 {MX} {MY}" dur="220s" repeatCount="indefinite"/></g>')
-A('</g>')
-# ---------- foreground layer ----------
-A('<g filter="url(#oil2)">')
-# ground
-LX0=668
-A('<rect x="-30" y="436" width="1260" height="120" fill="#0f1233"/>')
-for i in range(260):
-    x=R.uniform(-30,W); y=R.uniform(440,524)
-    k=max(0,1-abs(x-MX)/(60+(y-436)*3.2))
-    c=lerp(hexrgb('#141842'),hexrgb('#8f9fe0'),k*R.uniform(.3,1))
-    A(f'<path d="M{x:.0f} {y:.0f}h{R.uniform(26,80):.0f}" stroke="{rgbhex(jit(c,6))}" stroke-width="{R.uniform(5,12):.0f}" stroke-linecap="round" opacity=".85"/>')
-for i in range(40):
-    x=R.gauss(LX0,55); y=R.uniform(440,470)
-    A(f'<path d="M{x:.0f} {y:.0f}h{R.uniform(20,50):.0f}" stroke="{rgbhex(jit(hexrgb("#c9783f"),12))}" stroke-width="{R.uniform(4,9):.0f}" stroke-linecap="round" opacity="{R.uniform(.3,.7):.2f}"/>')
-for yy in (462,492): A(f'<path d="M-30 {yy}h1260" stroke="#070920" stroke-width="2.5" opacity=".7"/>')
-A('<path d="M-30 437h1260" stroke="#aab6f0" stroke-width="2.5" opacity=".7"/>')
-# stone lantern
-LX=668
-A(f'<circle cx="{LX}" cy="352" r="95" fill="url(#warm)" opacity=".8"/>')
-A(f'''<g>
-<path d="M{LX-30} 436h60l-6-12h-48z" fill="#2a2e58"/><path d="M{LX-9} 424h18l-3-44h-12z" fill="#343a6c"/><path d="M{LX+3} 424h6l-3-44h-3z" fill="#8f9fe0"/>
-<path d="M{LX-24} 380h48l-4-8h-40z" fill="#2a2e58"/>
-<rect x="{LX-17}" y="338" width="34" height="34" fill="#20244c"/><rect x="{LX-10}" y="344" width="20" height="23" rx="2" fill="#ffd27a"/><path d="M{LX} 344v23M{LX-10} 355h20" stroke="#8a4a1c" stroke-width="2"/>
-<path d="M{LX-38} 338q10-4 16-18h44q6 14 16 18q-38 5-76 0z" fill="#1c2046"/><path d="M{LX+10} 320h12q6 13 15 17" stroke="#aab6f0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-<path d="M{LX-6} 320q6-16 12 0z" fill="#1c2046"/><circle cx="{LX}" cy="306" r="5" fill="#2a2e58"/>
-</g>''')
-# torii
+A(f'<rect x="0" y="300" width="{W}" height="116" fill="url(#haze)"/>')
+# derelict giant robot
 A('''<g>
-<path d="M790 436L800 222h26l-4 214z" fill="#6a1622"/><path d="M1150 436L1140 222h-26l4 214z" fill="#6a1622"/>
-<path d="M812 436l3-214h11l-4 214z" fill="#a82a2a"/><path d="M1128 436l-3-214h-11l4 214z" fill="#a82a2a"/>
-<path d="M824 426l2-200" stroke="#ffe2b8" stroke-width="2.5" stroke-linecap="round"/><path d="M1116 426l-2-200" stroke="#ffe2b8" stroke-width="2.5" stroke-linecap="round"/>
-<path d="M792 430l5-120" stroke="#ff9a52" stroke-width="3" stroke-linecap="round" opacity=".8"/>
-<path d="M784 438l2-24h42l2 24z" fill="#0b0c22"/><path d="M1156 438l-2-24h-42l-2 24z" fill="#0b0c22"/>
-<rect x="752" y="236" width="436" height="20" fill="#7a1a26"/><rect x="752" y="251" width="436" height="5" fill="#ffd9a8" opacity=".75"/><rect x="752" y="236" width="436" height="5" fill="#b53030"/>
-<rect x="957" y="204" width="26" height="34" fill="#0f1030"/><rect x="961" y="208" width="18" height="26" fill="#c9a24a"/>
-<path d="M722 176Q970 204 1218 176L1212 204Q970 226 728 204Z" fill="#8a1e28"/><path d="M728 204Q970 226 1212 204" stroke="#ffd9a8" stroke-width="2.5" fill="none" opacity=".8"/>
-<path d="M712 160Q970 190 1228 160L1220 182Q970 208 720 182Z" fill="#0d0e26"/><path d="M714 161Q970 191 1226 161" stroke="#aab6f0" stroke-width="3" fill="none" opacity=".85"/>
-<path d="M826 258h288" stroke="#cdb97c" stroke-width="7" stroke-linecap="round"/><path d="M826 258h288" stroke="#6f5f34" stroke-width="7" stroke-dasharray="3 9"/>''')
-for sx in (866,926,1014,1074):
-    A(f'<path d="M{sx} 261l-7 9h7l-7 9h7l-7 9h13l7-9h-7l7-9h-7l7-9z" fill="#f6f3ea"/>')
-A('</g>')
-# pine branch
-A('<g stroke-linecap="round" fill="none"><path d="M1210 18Q1130 30 1060 78M1150 36Q1120 70 1110 110M1190 22Q1180 60 1160 92" stroke="#0a0f1c" stroke-width="7"/>')
-for (px,py) in [(1060,78),(1090,58),(1110,110),(1130,44),(1160,92),(1125,84),(1175,56),(1196,96),(1040,96),(1085,104),(1150,120)]:
-    for i in range(26):
-        a=math.radians(R.uniform(200,340)) if R.random()<.8 else R.uniform(0,6.28)
-        L=R.uniform(16,30)
-        col=R.choice(['#0c1a22','#0c1a22','#12303a','#1d4a4a','#6fa8a0'])
-        A(f'<path d="M{px} {py}l{math.cos(a)*L:.0f} {-abs(math.sin(a))*L:.0f}" stroke="{col}" stroke-width="2.2"/>')
-A('</g>')
-# higanbana
-def lily(x,y,s):
-    A(f'<path d="M{x} {y+70*s:.0f}Q{x+4*s:.0f} {y+30*s:.0f} {x} {y}" stroke="#1d4a3a" stroke-width="{3*s:.1f}" fill="none"/>')
-    for i in range(12):
-        a=math.radians(-90+R.uniform(-110,110)); L=R.uniform(16,26)*s
-        ex=x+math.cos(a)*L; ey=y+math.sin(a)*L
-        cx_=x+math.cos(a)*L*1.2; cy_=y+math.sin(a)*L*.2-10*s
-        col=R.choice(['#c81e2c','#e23b3b','#ff5a4a','#a01428'])
-        A(f'<path d="M{x} {y}Q{cx_:.0f} {cy_:.0f} {ex:.0f} {ey-6*s:.0f}" stroke="{col}" stroke-width="{R.uniform(2.5,4.5)*s:.1f}" fill="none" stroke-linecap="round"/>')
-    for i in range(7):
-        a=math.radians(-90+R.uniform(-80,80)); L=R.uniform(26,38)*s
-        A(f'<path d="M{x} {y}Q{x+math.cos(a)*L*.5:.0f} {y+math.sin(a)*L*1.2:.0f} {x+math.cos(a)*L:.0f} {y+math.sin(a)*L*.9:.0f}" stroke="#ff9a8a" stroke-width="{1.1*s:.1f}" fill="none" stroke-linecap="round"/>')
-for (x,y,s) in [(60,452,1.25),(128,470,1.5),(205,448,1.1),(268,474,1.45),(340,456,1.15),(410,478,1.3),(20,486,1.5),(480,462,.95),(545,480,1.1)]:
-    lily(x,y,s)
-# figure group
-A('<g transform="translate(970 436) scale(1.22) translate(-821 -436)">')
-A('<ellipse cx="770" cy="408" rx="95" ry="62" fill="url(#glow)"/>')
-A('<path d="M780 438l30 70h40l20-70z" fill="#05061a" opacity=".55"/>')
-A('''<g fill="#0c0e2a"><path d="M887 436c-4-18 2-34 14-38c13 3 20 20 16 38z"/><circle cx="901" cy="392" r="11"/><path d="M891 388l1-14 9 8zM911 388l0-14-9 8z"/><path d="M915 432c16 4 26-2 26-16" stroke="#0c0e2a" stroke-width="6" fill="none" stroke-linecap="round"/></g>
-<path d="M890 384l2-9M912 384l-1-9M887 430c-3-14 1-26 8-32M917 430c2-12 0-24-6-32M941 416c0 8-6 14-14 16" stroke="#ffe9bd" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".9"/>''')
-A('''<g>
-<path d="M800 316C772 320 748 332 722 326C736 342 756 346 774 344C760 356 744 360 730 358C748 372 774 370 792 362C790 380 792 396 800 408L842 408C852 380 852 344 846 318Z" fill="#12163c"/>
-<path d="M786 436C780 404 786 372 798 356C812 346 830 346 844 356C856 372 862 404 856 436Z" fill="#1d2152"/>
-<path d="M792 436C790 410 794 384 802 366C812 380 814 410 814 436Z" fill="#2c3170"/>
-<path d="M786 436C781 408 785 380 794 362C800 384 800 412 802 436Z" fill="#3fa9b5" opacity=".6"/>
-<path d="M844 356C856 372 862 404 856 436" stroke="#ffe9bd" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-<path d="M798 357C790 368 786 384 785 400" stroke="#ffe9bd" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/>
-<ellipse cx="821" cy="356" rx="27" ry="10" fill="#262b62"/><path d="M797 354q24-9 48 0" stroke="#ffe9bd" stroke-width="1.8" fill="none" opacity=".8"/>
-<circle cx="821" cy="322" r="25" fill="#12163c"/>
-<path d="M800 330C792 352 794 380 802 404C808 384 808 360 812 344ZM842 330C848 350 846 376 838 398C834 378 836 358 832 344Z" fill="#12163c"/>
-<path d="M806 338C802 356 802 376 806 392M730 332C748 336 768 332 786 324M740 360C756 362 774 356 788 346M812 318c4-8 14-10 20-4" stroke="#4f6fd6" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
-<path d="M799 308C804 299 814 296 821 296C830 296 840 300 844 310M846 334C850 356 848 380 842 396M797 334C794 350 794 366 796 380M722 326C740 330 760 326 780 320" stroke="#ffe9bd" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M797 320C797 288 845 288 845 320" stroke="#f6f1e6" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-<path d="M803 299l2-15 11 8zM839 299l-2-15-11 8z" fill="#f6f1e6"/>
-<rect x="790" y="312" width="11" height="24" rx="5.5" fill="#e77f63"/><rect x="841" y="312" width="11" height="24" rx="5.5" fill="#e77f63"/><path d="M850 315v18" stroke="#ffd9b0" stroke-width="1.6" stroke-linecap="round"/>
-<ellipse cx="786" cy="430" rx="13" ry="8" fill="#1d2152"/><ellipse cx="857" cy="430" rx="13" ry="8" fill="#1d2152"/>
+<path d="M664 440C660 372 672 318 700 300L812 300C842 318 852 372 848 440Z" fill="url(#robot)"/>
+<circle cx="686" cy="312" r="32" fill="url(#robot)"/><circle cx="828" cy="312" r="32" fill="#1c2430"/>
+<path d="M660 318C640 350 636 400 646 440L676 440C668 400 672 356 688 330Z" fill="url(#robot)"/>
+<path d="M838 322C866 352 874 400 868 440L842 440C846 400 840 360 826 336Z" fill="#161d28"/>
+<g transform="rotate(-9 748 262)"><rect x="734" y="284" width="30" height="22" fill="#1d2531"/>
+<path d="M700 262a50 46 0 0 1 100 0v10a50 22 0 0 1-100 0z" fill="url(#robot)"/>
+<path d="M722 224l-14-40M782 226l10-34" stroke="#2b3340" stroke-width="3" stroke-linecap="round"/><circle cx="708" cy="184" r="4" fill="#3a4250"/><circle cx="792" cy="192" r="4" fill="#2b3340"/>
+<circle cx="738" cy="262" r="19" fill="#0b0f16"/><circle cx="738" cy="262" r="12" fill="#2a0c0c"/>
+<circle cx="738" cy="262" r="26" fill="url(#eye)" opacity=".85"><animate attributeName="opacity" values=".85;.25;.7;.15;.85" keyTimes="0;.45;.5;.56;1" dur="6s" repeatCount="indefinite"/></circle>
+<path d="M702 256a50 46 0 0 1 30-36" stroke="#f0b98a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".8"/></g>
+<path d="M756 372l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" fill="#9a2f2a" opacity=".75"/>
+<path d="M700 340h112M704 352h30M768 352h40" stroke="#0e141c" stroke-width="2" opacity=".7"/>
+<path d="M662 330C646 360 642 400 648 436M672 296C664 310 660 330 662 350" stroke="#f0b98a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".75"/>
 </g>''')
-A('''<g transform="translate(20 0)"><path d="M716 434l-8-50 50-6 6 56z" fill="#0b0c22"/><path d="M712 387l42-5 5 48-40 2z" fill="#c9fbf3"/>
-<path d="M718 394h20M719 401h28M720 408h14M721 415h24M722 422h17" stroke="#2c8f9c" stroke-width="2.2" stroke-linecap="round"/>
-<path d="M704 434h66" stroke="#0b0c22" stroke-width="5" stroke-linecap="round"/></g>''')
-A('</g></g>')
-# ---------- unfiltered top: stars, petals, text ----------
-for i in range(80):
-    x=R.uniform(0,W); y=R.uniform(4,210)*R.random()**.6+4; r=R.uniform(.6,1.8)
-    if 1030<x and y<130: continue
-    an=''
-    if i%6==0: an=f'<animate attributeName="opacity" values="1;.2;1" dur="{R.uniform(3,7):.1f}s" begin="{R.uniform(0,5):.1f}s" repeatCount="indefinite"/>'
-    A(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.1f}" fill="#fff6e0" opacity="{R.uniform(.5,1):.2f}">{an}</circle>')
-for i in range(9):
-    x0=R.uniform(100,1150); dur=R.uniform(11,19); beg=R.uniform(0,12); dx=R.uniform(-160,-60)
-    A(f'<path d="M0 0q5-7 10 0q-5 5-10 0z" fill="{R.choice(["#e23b3b","#ff7a6a","#ffb3a8"])}" opacity="0"><animateTransform attributeName="transform" type="translate" values="{x0:.0f},-10;{x0+dx/2:.0f},260;{x0+dx:.0f},530" dur="{dur:.1f}s" begin="{beg:.1f}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;.9;0" keyTimes="0;.1;.85;1" dur="{dur:.1f}s" begin="{beg:.1f}s" repeatCount="indefinite"/></path>')
-SERIF="'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif"
-A(f'''<g font-family="{SERIF}"><text x="70" y="104" font-size="66" fill="#fbf3e4" letter-spacing="-1">2233admin</text>
-<text x="73" y="143" font-size="25" font-style="italic" fill="#ffc9a8">software that keeps working after the lights go out</text></g>
-<text x="1176" y="506" text-anchor="end" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" letter-spacing="2" fill="#8d90c4">NIGHT SHIFT · OIL ON SVG</text>''')
+# mid panel blocks
+def block(x,w,h,base=442,tone=0.0):
+    body=mix('#222a38','#3a3c4a',tone); y=base-h
+    A(f'<rect x="{x}" y="{y}" width="{w}" height="{h+20}" fill="{body}"/>')
+    A(f'<rect x="{x}" y="{y}" width="9" height="{h+20}" fill="#b0765a" opacity=".85"/>')
+    A(f'<rect x="{x}" y="{y}" width="{w}" height="3" fill="#d79a72" opacity=".7"/>')
+    cols=int((w-18)/13); rows=int((h-8)/13)
+    for r in range(rows):
+        for c in range(cols):
+            wx=x+14+c*13; wy=y+8+r*13
+            p=R.random()
+            if p<.2: col=R.choice(['#ffc878','#ffd9a0','#ffae5c','#ffc878','#9fdcec']); op=R.uniform(.7,1)
+            else: col='#121824'; op=.9
+            A(f'<rect x="{wx}" y="{wy}" width="7" height="8" fill="{col}" opacity="{op:.2f}"/>')
+    for i in range(R.randint(1,3)):
+        ax=x+R.uniform(12,w-12); A(f'<path d="M{ax:.0f} {y}v-{R.uniform(12,26):.0f}m-6 6h12m-9 5h6" stroke="#1a202c" stroke-width="1.5" fill="none"/>')
+for (x,w,h,t) in [(-20,150,96,.5),(140,120,128,.3),(270,170,84,.5),(452,96,140,.2),(556,84,70,.5),(880,110,92,.4),(1000,150,120,.2),(1140,90,150,.1)]:
+    block(x,w,h,tone=t)
+A(f'<rect x="0" y="360" width="{W}" height="82" fill="url(#haze)" opacity=".55"/>')
+# rooftop
+A(f'<rect x="0" y="436" width="{W}" height="90" fill="url(#roof)"/><path d="M0 436.5h{W}" stroke="#e9a878" stroke-width="2" opacity=".8"/><path d="M0 446h{W}" stroke="#05070a" stroke-width="3"/>')
+for i in range(60):
+    x=R.uniform(0,W); y=R.uniform(450,520)
+    A(f'<path d="M{x:.0f} {y:.0f}h{R.uniform(20,90):.0f}" stroke="#2a313d" stroke-width="{R.uniform(1,3):.1f}" opacity="{R.uniform(.2,.6):.2f}"/>')
+# sign frame + neon
+A('<g stroke="#0c1016" stroke-width="3" fill="none">'+''.join(f'<path d="M{x} 436V352M{x} 436l22-56"/>' for x in range(70,660,84))+'<path d="M50 424h596M50 356h596"/></g>')
+SIGN=f'<text x="60" y="418" font-family="{SANS}" font-weight="800" font-size="72" letter-spacing="7" textLength="576" lengthAdjust="spacingAndGlyphs">НОЧНАЯ СМЕНА</text>'
+A(f'<g fill="#ff3b2e" opacity=".9" filter="url(#b6)">{SIGN}</g><g fill="#ff6a55" stroke="#ffd2c4" stroke-width="1.2">{SIGN}<animate attributeName="opacity" values="1;1;.55;1;.7;1;1" keyTimes="0;.6;.62;.64;.66;.68;1" dur="7s" repeatCount="indefinite"/></g>')
+A('<rect x="40" y="440" width="620" height="40" fill="#ff4a38" opacity=".16" filter="url(#b6)"/>')
+# roof clutter
+A('''<rect x="700" y="408" width="70" height="30" fill="#141a23"/><rect x="700" y="408" width="70" height="4" fill="#c58a66" opacity=".7"/><path d="M712 414h46M712 421h46M712 428h46" stroke="#05070a" stroke-width="2"/>
+<path d="M820 436v-92m-22 10h44m-36 12h28m-20 12h12" stroke="#0c1016" stroke-width="2.5" fill="none"/><path d="M1168 436v-70" stroke="#0c1016" stroke-width="3"/><path d="M1150 372a20 20 0 0 1 36-14z" fill="#1a212c"/>''')
+# cat
+A('''<g transform="translate(1102 436)"><path d="M-16 0c-4-18 2-34 14-38c13 3 20 20 16 38z" fill="#0c1016"/><circle cx="-2" cy="-44" r="11" fill="#0c1016"/><path d="M-12-48l1-14 9 8zM8-48l0-14-9 8z" fill="#0c1016"/><path d="M12-4c16 4 26-2 26-16" stroke="#0c1016" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M-12-50l1-11M-16-4c-3-14 1-26 8-32M-12-40c-2-6 0-10 3-13" stroke="#f0b98a" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>''')
+# radio
+A('''<g transform="translate(906 436)"><rect x="-26" y="-22" width="52" height="22" rx="3" fill="#1b222d"/><circle cx="-12" cy="-11" r="7" fill="#0b0f15"/><circle cx="-12" cy="-11" r="3" fill="#39424f"/><rect x="2" y="-17" width="18" height="6" fill="#ffb060" opacity=".9"/><path d="M20-22l26-44" stroke="#8b95a3" stroke-width="1.5"/><path d="M-26-22h52" stroke="#d79a72" stroke-width="1.5" opacity=".8"/></g>''')
+# ---- the maid (gopnik squat, profile facing left) ----
+A('<g transform="translate(1012 436) scale(1.28)">')
+A('<ellipse cx="-8" cy="2" rx="62" ry="6" fill="#000" opacity=".5" filter="url(#b2)"/>')
+A('''<path d="M26 -62c18-12 36-8 44 4c-12 2-22 8-30 16c10 2 18 10 20 22c-14-8-28-10-40-8z" fill="#f4efe8"/><path d="M26 -62c18-12 36-8 44 4M40-42c10 2 18 10 20 22" stroke="#8fa0b8" stroke-width="1.5" fill="none"/><circle cx="26" cy="-58" r="7" fill="#e3ddd4"/>
+<path d="M30-34C34-20 30-8 20 0L-16 0C-8-10 0-22 6-36Z" fill="#0f1420"/>
+<path d="M32-30q6 6 4 12q-6 2-9-3q4 5 0 10q-6 1-8-4q2 6-3 9q-6 0-7-5q1 6-5 8" stroke="#f4efe8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M-44-66C-30-76 -8-66 22-46C30-40 34-30 28-22C10-28 -20-40 -40-50Z" fill="url(#pants)"/>
+<path d="M-46-66C-52-48 -34-24 -20-8L-2-8C-10-26 -22-48 -30-70Z" fill="url(#pants)"/>
+<path d="M-38-62C-22-60 2-48 24-34M-34-56C-20-54 2-43 22-29" stroke="#f1eee8" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M-44-58C-40-40 -28-22 -16-9M-39-60C-35-42 -23-24 -11-10" stroke="#f1eee8" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M-46-66C-50-52 -40-34 -30-20" stroke="#ffb884" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
+<path d="M-46 0C-48-8 -36-14 -22-13L0-10C6-8 8-2 6 0Z" fill="#ece6dc"/><path d="M-46 0h52" stroke="#b9372c" stroke-width="3"/><path d="M-30-11l8 8M-22-12l8 8" stroke="#b9372c" stroke-width="1.6"/><path d="M-46-2C-46-8 -38-13 -28-13" stroke="#ffd9b0" stroke-width="1.6" fill="none"/>
+<path d="M24-40C34-62 30-96 14-116C2-124 -14-120 -20-108C-24-90 -18-62 -4-42Z" fill="url(#jacket)"/>
+<path d="M-16-110C-22-94 -20-74 -12-56L-2-44C-10-62 -12-88 -8-110Z" fill="#11141c"/><path d="M-13-104C-18-90 -16-74 -10-60" stroke="#f4efe8" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="1 7"/>
+<path d="M24-40C34-62 30-96 14-116" stroke="#6fa0bc" stroke-width="1.6" fill="none" opacity=".7"/>
+<path d="M-18-120c6-6 26-6 32 2l-2 10c-10 4-22 4-30-2z" fill="#1a2238"/><path d="M-18-120c6-6 26-6 32 2" stroke="#f1eee8" stroke-width="2" fill="none"/>
+<path d="M10-112C-6-108 -30-92 -46-76C-42-68 -36-66 -30-68C-16-78 4-88 18-96Z" fill="url(#jacket)"/>
+<path d="M8-108C-8-102 -28-88 -42-74M12-102C-4-96 -22-84 -36-70" stroke="#f1eee8" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="-40" cy="-72" r="8" fill="#39424f"/><circle cx="-40" cy="-72" r="4.5" fill="#ff9a4a"><animate attributeName="opacity" values="1;.5;1" dur="3s" repeatCount="indefinite"/></circle>
+<path d="M-46-76L-74-52L-68-44L-38-66Z" fill="url(#metal)"/><path d="M-52-70l-18 16M-60-58l4 5M-54-63l4 5" stroke="#1a2029" stroke-width="1.4" fill="none"/><path d="M-46-76L-74-52" stroke="#ffe2c0" stroke-width="1.4"/>
+<rect x="-78" y="-54" width="12" height="5" rx="2" transform="rotate(-40 -72 -52)" fill="#ff9a4a"/>
+<path d="M-76-52c-6 2-9 8-6 13c5 2 10-2 12-8z" fill="url(#metal)"/>
+<g transform="rotate(8 -80 -40)"><rect x="-84" y="-50" width="7" height="14" fill="url(#glass)"/><path d="M-88-36h15l3 8v24a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3v-24z" fill="url(#glass)"/><rect x="-90" y="-24" width="19" height="13" fill="#e9dcc0"/><path d="M-87-20h13M-87-16h9" stroke="#b9372c" stroke-width="1.6"/><path d="M-89-34v28" stroke="#ffc890" stroke-width="1.4" opacity=".9"/><rect x="-85" y="-53" width="9" height="4" fill="#d9b24a"/></g>
+<g transform="translate(4 -114) scale(.8) translate(-4 114)"><path d="M-6-118l2 12 10-2-2-12z" fill="url(#skin)"/>
+<path d="M-26-146C-28-160 -14-170 2-168C16-166 24-154 22-140C20-128 10-120 0-119C-8-118 -16-120 -19-126L-21-131L-27-133L-24-138Z" fill="url(#skin)"/>
+<path d="M-22-134q3 2 6 0" stroke="#7a3b3b" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+<path d="M-21-146q5-3 10 0" stroke="#2a2030" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M-19-145.5a3.2 2.6 0 0 0 6 0z" fill="#b9372c"/><path d="M-20-141q4 2 8 0" stroke="#8a6078" stroke-width="1.6" fill="none" opacity=".55"/>
+<path d="M-24-151l9-3" stroke="#8f98a8" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="-10" cy="-136" rx="5" ry="2.6" fill="#ff8a7a" opacity=".35"/>
+<path d="M-26-150C-30-166 -14-178 4-176C22-174 32-158 28-138C26-126 20-118 12-114C16-126 14-138 8-146C4-138 0-134 -4-134C-2-142 -4-150 -8-156C-12-152 -18-150 -26-150Z" fill="url(#hair)"/>
+<path d="M-8-156C-4-150 -2-142 -4-134M8-146C14-138 16-126 12-114M-20-158C-12-166 0-168 10-164" stroke="#6d7a92" stroke-width="1.3" fill="none" opacity=".8"/>
+<path d="M-27-152C-30-166 -16-177 0-177" stroke="#ffe9c8" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M28-140C26-128 20-119 13-115" stroke="#6fa0bc" stroke-width="1.5" fill="none" opacity=".8"/>
+<path d="M-20-170C-10-180 10-182 22-170" stroke="#12151c" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M-22-172q3-9 9-6q2-9 9-5q4-8 10-3q6-6 10 1q7-3 8 5" stroke="#f8f4ee" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6-146v10" stroke="#d9b24a" stroke-width="1.5"/><circle cx="6" cy="-134" r="2.4" fill="#b9372c"/></g>
+<path d="M30-44C38-64 34-94 18-114C24-92 24-66 14-42Z" fill="#05070c" opacity=".45" filter="url(#b2)"/>''')
+A('</g>')
+# front haze + snow + grade
+A(f'<rect x="0" y="330" width="{W}" height="110" fill="url(#haze)" opacity=".16"/>')
+for i in range(46):
+    x0=R.uniform(-40,1240); dur=R.uniform(9,20); beg=-R.uniform(0,20); r=R.uniform(.9,2.6); dx=R.uniform(-90,-20)
+    A(f'<circle r="{r:.1f}" fill="#fff4e6" opacity="{R.uniform(.35,.9):.2f}"><animateTransform attributeName="transform" type="translate" values="{x0:.0f},-10;{x0+dx:.0f},530" dur="{dur:.1f}s" begin="{beg:.1f}s" repeatCount="indefinite"/></circle>')
+A(f'<rect width="{W}" height="{H}" fill="url(#vig)"/><rect width="{W}" height="{H}" filter="url(#grain)" opacity=".22"/>')
+# title
+A(f'''<rect x="70" y="52" width="6" height="96" fill="#e0382c"/>
+<text x="92" y="108" font-family="{SANS}" font-weight="800" font-size="68" letter-spacing="3" fill="#f6eede">2233ADMIN</text>
+<text x="94" y="140" font-family="{MONO}" font-size="13.5" letter-spacing="2.6" fill="#f0b48c">SOFTWARE THAT KEEPS WORKING AFTER THE LIGHTS GO OUT</text>
+<text x="1176" y="506" text-anchor="end" font-family="{MONO}" font-size="10.5" letter-spacing="2" fill="#6f7a8c">НОЧНАЯ СМЕНА · NIGHT SHIFT</text>''')
 A('</g></svg>')
 open(out,'w').write('\n'.join(o))

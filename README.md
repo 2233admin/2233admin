@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/night.svg" width="100%" alt="A thick-paint style painting: a girl in headphones sits under a vermilion torii gate with a laptop and a cat, silhouetted against a huge full moon over a city, rings of glowing danmaku turning in the night sky. 2233admin — software that keeps working after the lights go out.">
+<img src="assets/night.svg" width="100%" alt="A doomer maid in a striped tracksuit jacket, with a mechanical arm and a bottle of kvass, squats on a panel-block rooftop beside a cat. Past a red rooftop sign reading НОЧНАЯ СМЕНА (night shift), a derelict giant robot slumps among apartment blocks while a rocket climbs past a ringed planet at dusk. 2233admin — software that keeps working after the lights go out.">
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E77F63&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%E5%A4%9C%E7%8F%AD%E4%B8%8D%E6%89%93%E7%83%8A+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=18&duration=2800&pause=1400&color=E77F63&center=true&vCenter=true&width=720&lines=tools+for+coding+agents%2C+and+the+factory+around+them;the+queue+%C2%B7+the+gates+%C2%B7+the+merge+%C2%B7+the+measurement;%D0%9D%D0%9E%D0%A7%D0%9D%D0%90%D0%AF+%D0%A1%D0%9C%D0%95%D0%9D%D0%90+%C2%B7+night+shift+never+closes" alt="tools for coding agents, and the factory around them">
 
 <img src="https://count.getloli.com/@2233admin?name=2233admin&theme=moebooru&padding=7&align=center" height="72" alt="visitor counter">
 
@@ -72,4 +72,4 @@ If it only works inside the demo, it isn't finished.
   <img src="assets/rule-light.svg" width="100%" alt="">
 </picture>
 
-<div align="center"><sub>Header painted by hand in SVG — <a href="assets/paint.py">the brushwork</a> is in the repo.</sub></div>
+<div align="center"><sub>Header drawn by hand in SVG — <a href="assets/paint.py">the brushwork</a> is in the repo.</sub></div>
