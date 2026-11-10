@@ -4,7 +4,7 @@ on:
     - cron: "17 */6 * * *"
   workflow_dispatch:
   push:
-    branches: [main, living-page]
+    branches: [main]
 permissions:
   contents: write
 jobs:

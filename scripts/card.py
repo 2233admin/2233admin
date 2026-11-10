@@ -26,7 +26,7 @@ A(f'<text x="60" y="262" font-family="{MONO}" font-size="12.5" letter-spacing="2
 A(f'<text x="60" y="282" font-family="{MONO}" font-size="12.5" letter-spacing="2.4" fill="#6f7aa6">TRAIT  DOES NOT CLOCK OUT</text>')
 # stat bars
 X0 = 470
-rows = [("STARS", D["stars"], 20000), ("FOLLOWERS", D["followers"], 2000), ("REPOS", D["repos"], 1000), ("LAST 2 DAYS", D.get("activity", 0), 150)]
+rows = [("STARS", D["stars"], 20000), ("FOLLOWERS", D["followers"], 2000), ("REPOS", D["repos"], 1000), ("LAST 2 DAYS", D.get("activity", 0), 300)]
 for i, (lab, v, mx) in enumerate(rows):
     y = 84 + i * 36; seg = min(12, max(1 if v else 0, round(12 * math.log10(v + 1) / math.log10(mx + 1))))
     A(f'<text x="{X0}" y="{y}" font-family="{MONO}" font-size="14" letter-spacing="2.2" fill="#8b90b8">{lab}</text>')

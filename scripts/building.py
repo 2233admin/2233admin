@@ -4,7 +4,7 @@ SRC=sys.argv[1]; OUT=sys.argv[2]
 D=json.load(open(sys.argv[3])) if len(sys.argv)>3 else {'pushes':99}
 PUSH=D.get('activity',D.get('pushes',0))
 PRIORITY=['typing','building','thinking','thumbs-up','happy','music','swim']
-AWAKE=set(PRIORITY[:min(7,math.ceil(PUSH/4))]) if PUSH else set()
+AWAKE=set(PRIORITY[:min(7,math.ceil(PUSH/8))]) if PUSH else set()
 RW,RH,ROOF,GND=100,76,16,6
 W,H=RW*4,ROOF+RH*2+GND
 T=80; TICK=100
