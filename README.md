@@ -16,8 +16,6 @@
 
 <img src="https://raw.githubusercontent.com/2233admin/2233admin/output/nightshift.gif" width="100%" alt="Pixel-art cutaway of a night-shift building with eight rooms, each with the whale maid at work or asleep: terminal room, planning room, break room, bunk room, assembly line, bath, shipping and sign-off.">
 
-<sub>Live board. Rooms light up with the last two days of contributions; on a quiet day everyone sleeps. Redrawn every six hours.<br>鲸娘 · the whale maid is from <a href="https://github.com/ccch1mneyyy/dsh-Go">DSH Go</a>.</sub>
-
 </div>
 
 <br>
