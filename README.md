@@ -10,7 +10,6 @@
 
 <br>
 
-I build tools for coding agents, and the factory around them: the queue, the gates, the merge, the measurement. Most of it is small and command-line shaped. All of it is meant to be left running.
 
 <br>
 
@@ -18,7 +17,6 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 
 <img src="assets/nightshift.gif" width="100%" alt="Pixel-art cutaway of a night-shift building: eight rooms, each with the whale maid at work — typing at a terminal, thinking at a blackboard, listening to music, sleeping, running the assembly line, soaking in the bath, celebrating a shipment, and signing off the checklist.">
 
-<sub>鲸娘 · the whale maid from <a href="https://github.com/ccch1mneyyy/dsh-Go">DSH Go</a>, on night shift</sub>
 
 </div>
 
