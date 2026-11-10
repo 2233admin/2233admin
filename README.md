@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="assets/hero.svg" width="100%" alt="2233admin — software that keeps working after the lights go out. A wolf-eared maid in a tracksuit jacket with a mechanical arm squats on a rain-soaked rooftop beside a black cat; behind her a derelict giant robot, ruined arches, a rocket launch and a ringed planet over a retro-futurist city.">
-
-<img src="assets/talk.svg" width="100%" alt="Visual-novel dialogue box: the whale maid welcomes you to the 2233admin workshop, says she is watching the night shift, and asks for a star.">
+<img src="assets/talk.svg" width="100%" alt="2233admin — software that keeps working after the lights go out. In a visual-novel dialogue box, the whale maid welcomes visitors to the workshop, explains that it builds tools for coding agents and the factory they work in, and invites them to stay.">
 
 <img src="https://komarev.com/ghpvc/?username=2233admin&style=flat-square&color=e0382c&label=VISITORS" alt="visitor counter">
 
