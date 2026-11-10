@@ -27,7 +27,7 @@ I build tools for coding agents, and the factory around them: the queue, the gat
 <img src="assets/pets/sleeping.gif" width="11%" alt="Whale girl, sleeping">
 <img src="assets/pets/thumbs-up.gif" width="11%" alt="Whale girl, thumbs up">
 
-<sub>鲸娘 · the whale maid from <a href="https://github.com/ccch1mneyyy/dsh-Go">DSH Go</a>, on night shift</sub>
+
 
 </div>
 
